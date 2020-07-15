@@ -29,3 +29,27 @@ console.log(copyArray1);
 // We can also use the slice operator with no arguements passed to it 
 let copyArray2 = originalArray.slice();
 console.log(copyArray2);
+
+// The rest operator is essentially the opposite of the spread operator
+//While the spread operator is used to expand the array / object to it's values, 
+// the rest operator combines various arguements to a function into an array
+
+// the below block works but isn't versatile enough, which means that in order to increase the number of arguements, 
+// we would have to change the code at the function as well
+let returnArray = (arg1, arg2, arg3) => {
+    return [arg1, arg2, arg3];
+}
+console.log(returnArray(1, 2, 3));
+
+// Below is a rewrite of the above function using the rest operator
+
+// let returnArrayNew = (...args) => {
+//     return args;
+// }
+
+let returnArrayNew = (...args) => args;
+
+console.log(returnArrayNew(5, 6, 7));
+
+
+// Syntactically, both the spread and the rest operator use 3 dots, but the effect is quite opposite
