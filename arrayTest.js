@@ -24,5 +24,8 @@ let originalArray = ["Chess", "Football", "Basketball"];
 //It can be applied to objects as well as arrays and it basically expands the values / properties
 let copyArray1 = [...originalArray];
 
+console.log(copyArray1);
+
 // We can also use the slice operator with no arguements passed to it 
 let copyArray2 = originalArray.slice();
+console.log(copyArray2);
