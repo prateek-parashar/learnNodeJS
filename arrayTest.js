@@ -14,3 +14,15 @@ console.log(testMapArray.map(x => (x % 2) == 0));
 
 // The value of the original array is left unchanged
 console.log(testMapArray);
+
+//Copying the arrray
+// A deep copy of the arrays or objects is to be preferred as we try to avoid mutability as much as possible
+
+let originalArray = ["Chess", "Football", "Basketball"];
+
+// The spread operator (...) is an excellent way to copy the array 
+//It can be applied to objects as well as arrays and it basically expands the values / properties
+let copyArray1 = [...originalArray];
+
+// We can also use the slice operator with no arguements passed to it 
+let copyArray2 = originalArray.slice();
