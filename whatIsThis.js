@@ -1,15 +1,18 @@
-var Ball = function( x, y, vx, vy ) {
-    this.x = x;
-    this.y = y;
-    this.vx = vx;
-    this.vy = vy;
-    this.dt = 25; // 1000/25 = 40 frames per second
-    setInterval( () => {
-        this.x += vx;  
-        this.y += vy;
-        console.log( this.x, this.y );
-    }, this.dt );
-  
+const testObject = {
+    name : "Richard",
+    company : "Pied Piper",
+    
+    //here, the this keyword would refer to the object which encloses it
+    printName : function () {
+        console.log(this.name);
+    },
+
+    //If we use the arrow syntax, the this keyword would not refer to the enclosing object, instead it would print "undefined"
+    //That behaviour is caused by the defautl jS behaviour where the this keyword refers to whoever called a method that uses this
+    printNameArrow : () => {
+        console.log(this.name);
+    }
 }
 
-var ball = new Ball( 0, 0, 10000, 10000 );
+// testObject.printName();
+testObject.printNameArrow();
