@@ -1,7 +1,7 @@
 const http = require("http");
 
 const server = http.createServer((req, res) => {
-    console.log(req);
+    console.log(`The request URL is ${req.url} and the request method is ${req.method}`);
 })
 
 server.listen(3000);
