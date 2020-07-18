@@ -5,6 +5,17 @@ const server = http.createServer((req, res) => {
         `The request URL is ${req.url} and the request method is ${req.method}`
     );
 
+    if (req.url === "/") {
+        res.write("<html>");
+        res.write("<head> <title> Welcome </title></head>");
+        res.write("<body>");
+        res.write(
+            "<form action='/message' method=POST><input type='text' name='message'><button type='submit' > Send </button></form>"
+        );
+        res.write("</html>");
+        return res.end();
+    }
+
     res.setHeader("Content-Type", "text/html");
 
     res.write("<html>");
