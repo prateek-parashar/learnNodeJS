@@ -21,7 +21,16 @@ const server = http.createServer((req, res) => {
     }
 
     if (url === "/message" && method === "POST") {
-        fs.writeFileSync("message.txt", "Dummy Data");
+        const body = [];
+        req.on("data", (chunk) => {
+            body.push(chunk);
+        });
+
+        req.on("close", () => {
+            let inputMessageBuffer = Buffer.concat(body).toString();
+            let inputMessage = inputMessageBuffer.split("=")[1];
+            fs.writeFileSync("message.txt", inputMessage);
+        });
 
         // The below method can also be written in 2 lines by setting the status and headers indivisually
         res.writeHead(302, { Location: "/" });
