@@ -1,11 +1,15 @@
 const http = require("http");
+const fs = require("fs");
 
 const server = http.createServer((req, res) => {
     console.log(
         `The request URL is ${req.url} and the request method is ${req.method}`
     );
 
-    if (req.url === "/") {
+    const url = req.url;
+    const method = req.method;
+
+    if (url === "/") {
         res.write("<html>");
         res.write("<head> <title> Welcome </title></head>");
         res.write("<body>");
@@ -13,6 +17,14 @@ const server = http.createServer((req, res) => {
             "<form action='/message' method=POST><input type='text' name='message'><button type='submit' > Send </button></form>"
         );
         res.write("</html>");
+        return res.end();
+    }
+
+    if (url === "/message" && method === "POST") {
+        fs.writeFileSync("message.txt", "Dummy Data");
+
+        // The below method can also be written in 2 lines by setting the status and headers indivisually
+        res.writeHead(302, { Location: "/" });
         return res.end();
     }
 
