@@ -6,7 +6,7 @@ My journey to learn Node JS
 
 ## My comments as I went through the course
 
-# Basics
+### Basics
 
 -   THIS IS SO COOL!
     Coming from java, it always seemed impossible to create a server without a third party container (i.e Tomcat, Glassfish)
@@ -28,7 +28,7 @@ My journey to learn Node JS
 
 -   P.S. After fininshing with the first couple of modules, I can safely say that this instructor (Max from udemy) is freaking awesome!
 
-# Npm
+### Npm
 
 -   Till now, I had just heard the bad things of the node package management, now I saw it firstHand.
 -   Installed the nodemon package, and it ended up installing god knows how many files!
