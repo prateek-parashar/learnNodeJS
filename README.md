@@ -34,3 +34,11 @@ My journey to learn Node JS
 -   Installed the nodemon package, and it ended up installing god knows how many files!
 -   Anyways, the packages from npm can be categorized in 2 ways - Development packages and production packages.
 -   Use the command - `npm install (package name) --save-dev` to segregate the packages
+
+### ExpressJS
+
+-   ExpressJs is an unopiniated framework for nodeJS
+-   It seems so similar to flask!
+-   The core principle of ExpressJS is the middleware.
+-   Middleware allows us to send the incoming request through multiple funnels where we can do things with it.
+-   The funneling / continuation of the request is achieved in ExpressJS via the next function which is passed to the callback function used in the `app.use` method.
