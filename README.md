@@ -42,3 +42,4 @@ My journey to learn Node JS
 -   The core principle of ExpressJS is the middleware.
 -   Middleware allows us to send the incoming request through multiple funnels where we can do things with it.
 -   The funneling / continuation of the request is achieved in ExpressJS via the next function which is passed to the callback function used in the `app.use` method.
+-   Express makes the sending of responses damn easy! No more manual setting up of headers and sending the response using the `res.write` function.
