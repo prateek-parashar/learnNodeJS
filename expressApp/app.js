@@ -6,8 +6,13 @@ const shopRoutes = require("./routes/shop");
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(adminRoutes);
-app.use(shopRoutes);
+app.use("/admin", adminRoutes);
+app.use("/shop", shopRoutes);
+
+app.get("/", (req, res) => {
+    console.log("HEllO THere!");
+    res.send("<h1> Back to home, eh? </h1>");
+});
 
 // Handling the not found requests!
 app.use((req, res, next) => {
