@@ -50,3 +50,6 @@ My journey to learn Node JS
 -   We use the body-parser (earlier an external package now added into ExpressJS) to parse the incoming requests so that we can work with them easily.
 -   Also, for rerouting, we use the method `req.redirect()`
 -   Instead of using `app.use()` ExpressJS provides us with HTTP verb exclusive methods like `app.post()`, `app.delete()` etc.
+-   Hence, using the HTTP verb exclusice methods is significantly better as they allow for filtering of requests based on the requested method type.
+-   Better still, using the HTTP verb exclusiv method makes expressJS do a strict match on the URL pattern! Which means that the problem in `app.use()` which made the `'/'` get selected for all the routes, now only works strictly for `'/'`
+-   Express also provides us with a Router function which is so much better at handling routes and also helps us split our route in various chunks.
