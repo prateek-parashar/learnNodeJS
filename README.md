@@ -53,3 +53,4 @@ My journey to learn Node JS
 -   Hence, using the HTTP verb exclusice methods is significantly better as they allow for filtering of requests based on the requested method type.
 -   Better still, using the HTTP verb exclusiv method makes expressJS do a strict match on the URL pattern! Which means that the problem in `app.use()` which made the `'/'` get selected for all the routes, now only works strictly for `'/'`
 -   Express also provides us with a Router function which is so much better at handling routes and also helps us split our route in various chunks.
+-   Found suck a nice usage of the `app.use()` function, ERROR Handling! As it doesn't strictly pattern match the urls, it serves a great purpose in catching all the invalid URls requests! Just remember to always use it at the bottom, as ExpressJS middlewares work in a top to bottom fashion.
