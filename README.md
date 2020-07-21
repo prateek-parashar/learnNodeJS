@@ -47,3 +47,5 @@ My journey to learn Node JS
 -   Express JS executes the middleware lexically from top to bottom.
 -   The first arguement to the `app.use()` function can be used to define the routes.
 -   Though we should beware! If the route is selected as `'/'` then the app will route to that one regardless of the other ones as setting this as the route wouldn't just include urls ending with `'/'` but rather ALL the URLS starting with `'/'`
+-   We use the body-parser (earlier an external package now added into ExpressJS) to parse the incoming requests so that we can work with them easily.
+-   Also, for rerouting, we use the method `req.redirect()`

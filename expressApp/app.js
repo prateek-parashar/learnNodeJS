@@ -1,20 +1,28 @@
 const express = require("express");
+const { text } = require("express");
 
 const app = express();
 
-app.use("/", (req, res, next) => {
-    console.log("This always runs");
-    next();
-});
-
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/welcome", (req, res, next) => {
-    console.log("In another middleWare!");
     res.send("<h1> Hello From ExpressJS </h1>");
+});
+
+app.use("/add-product", (req, res, next) => {
+    res.send(
+        "<form action ='/product' method='POST'><input type='text' name = 'productName'> <button type='submit'> Add Product </button> </form>"
+    );
+});
+
+app.use("/product", (req, res, next) => {
+    console.log(req.body);
+    res.redirect("/");
 });
 
 app.use("/", (req, res) => {
     console.log("HEllO THere!");
+    res.send("<h1> Back to home, eh? </h1>");
 });
 
 app.listen(3000);
