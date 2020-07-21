@@ -44,3 +44,6 @@ My journey to learn Node JS
 -   The funneling / continuation of the request is achieved in ExpressJS via the `next()` function which is passed to the callback function used in the `app.use` method.
 -   If the `next()` function is not available, the request is not funneled to the next method.
 -   Express makes the sending of responses damn easy! No more manual setting up of headers and sending the response using the `res.write` function.
+-   Express JS executes the middleware lexically from top to bottom.
+-   The first arguement to the `app.use()` function can be used to define the routes.
+-   Though we should beware! If the route is selected as `'/'` then the app will route to that one regardless of the other ones as setting this as the route wouldn't just include urls ending with `'/'` but rather ALL the URLS starting with `'/'`
