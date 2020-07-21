@@ -49,3 +49,4 @@ My journey to learn Node JS
 -   Though we should beware! If the route is selected as `'/'` then the app will route to that one regardless of the other ones as setting this as the route wouldn't just include urls ending with `'/'` but rather ALL the URLS starting with `'/'`
 -   We use the body-parser (earlier an external package now added into ExpressJS) to parse the incoming requests so that we can work with them easily.
 -   Also, for rerouting, we use the method `req.redirect()`
+-   Instead of using `app.use()` ExpressJS provides us with HTTP verb exclusive methods like `app.post()`, `app.delete()` etc.
