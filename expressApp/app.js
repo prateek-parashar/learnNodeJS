@@ -8,6 +8,7 @@ const shopRoutes = require("./routes/shop");
 const rootDir = require("./util/path");
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(rootDir, "public")));
 
 app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
