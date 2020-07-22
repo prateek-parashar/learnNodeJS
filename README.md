@@ -55,3 +55,6 @@ My journey to learn Node JS
 -   Express also provides us with a Router function which is so much better at handling routes and also helps us split our route in various chunks.
 -   Found suck a nice usage of the `app.use()` function, ERROR Handling! As it doesn't strictly pattern match the urls, it serves a great purpose in catching all the invalid URls requests! Just remember to always use it at the bottom, as ExpressJS middlewares work in a top to bottom fashion.
 -   ExpressJS gives us a filtering mechanism that appends a common path name to all the routes so that we do not have to repeat is across the routes file.
+-   The `path` module is a core module which gives us nice functionality like the `path.join()` function which allows us to create the path of the files which we need. Of course, I can stitch the path manually, but using the `path` module is great in that it makes all the path systems operating system agnostic cause different operating systems have thier own quirks (looking at you Windows).
+-   Then there's the function called `path.dirname()` which gives the dirname of the passed in file.
+-   To get the name of the file which acts as the entry point to the program, we use the property - `require.main.filename` which, in this case return the name of the entry point - `app.js`
