@@ -5,6 +5,7 @@ const path = require("path");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const rootDir = require("./util/path");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,7 +19,7 @@ app.get("/", (req, res) => {
 
 // Handling the not found requests!
 app.use((req, res, next) => {
-    res.sendFile(path.join(__dirname, "views", "error404.html"));
+    res.status(404).sendFile(path.join(rootDir, "views", "error404.html"));
 });
 
 app.listen(3000);
