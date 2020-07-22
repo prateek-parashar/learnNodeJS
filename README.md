@@ -58,3 +58,6 @@ My journey to learn Node JS
 -   The `path` module is a core module which gives us nice functionality like the `path.join()` function which allows us to create the path of the files which we need. Of course, I can stitch the path manually, but using the `path` module is great in that it makes all the path systems operating system agnostic cause different operating systems have thier own quirks (looking at you Windows).
 -   Then there's the function called `path.dirname()` which gives the dirname of the passed in file.
 -   To get the name of the file which acts as the entry point to the program, we use the property - `require.main.filename` which, in this case return the name of the entry point - `app.js`
+-   Express gives us the method `app.use(express.static(directory name))` to allow us to serve static files.
+-   Hence, Express forwards all the requests to files to the folder provided as an argument in the above function.
+-   This is basically a middleware which searches for all the file references in the project at the given location.
