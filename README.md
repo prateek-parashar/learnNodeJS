@@ -61,3 +61,4 @@ My journey to learn Node JS
 -   Express gives us the method `app.use(express.static(directory name))` to allow us to serve static files.
 -   Hence, Express forwards all the requests to files to the folder provided as an argument in the above function.
 -   This is basically a middleware which searches for all the file references in the project at the given location.
+-   The fact that we have to export the functions and variables from file to file is really annoying.
