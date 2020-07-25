@@ -62,3 +62,6 @@ My journey to learn Node JS
 -   Hence, Express forwards all the requests to files to the folder provided as an argument in the above function.
 -   This is basically a middleware which searches for all the file references in the project at the given location.
 -   The fact that we have to export the functions and variables from file to file is really annoying.
+-   Express allows us to set the value of the templating engine that we are using the in the application.
+-   To do that, we use the method `app.set()` where we can attatch some values to the express app (configuration setup).
+-   Express has some built in values that we can set (provided in the documentation) where we can change the configurations.

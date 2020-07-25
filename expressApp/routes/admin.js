@@ -16,5 +16,6 @@ router.post("/add-product", (req, res, next) => {
     res.redirect("/shop");
 });
 
+// Here, we are basically exporting an object whose keys will be the keys we set here for the exports object.
 exports.routes = router;
 exports.products = productsArray;
