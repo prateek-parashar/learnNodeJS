@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const expressHbs = require("express-handlebars");
 
 const path = require("path");
 
@@ -8,22 +7,7 @@ const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const rootDir = require("./util/path");
 
-//Setting the values of the templating engine
-// app.engine(
-//     "hbs",
-//     expressHbs({ defaultLayout: "main-layout" })
-// );
-
-app.engine(
-    "hbs",
-    expressHbs({
-        extname: "hbs",
-        layoutsDir: "views/layouts/",
-        defaultLayout: "main-layout",
-    })
-);
-
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, "public")));
@@ -38,7 +22,10 @@ app.get("/", (req, res) => {
 
 // Handling the not found requests!
 app.use((req, res, next) => {
-    res.status(404).render("404", { pageTitle: "It's All Empty here" });
+    res.status(404).render("404", {
+        pageTitle: "It's All Empty here",
+        path: "./",
+    });
 });
 
 app.listen(3000);
