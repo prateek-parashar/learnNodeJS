@@ -12,6 +12,8 @@ router.use("/", (req, res, next) => {
         pageTitle: "Shop",
         products: adminData.products,
         hasProducts: adminData.products.length > 0,
+        shopPage: true,
+        activeShop: true,
     });
 });
 

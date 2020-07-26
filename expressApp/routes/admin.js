@@ -8,7 +8,11 @@ const router = express.Router();
 const productsArray = [];
 
 router.get("/add-product", (req, res, next) => {
-    res.render("add-product", { pageTitle: "Add Product" });
+    res.render("add-product", {
+        pageTitle: "Add Product",
+        addProduct: true,
+        activeProduct: true,
+    });
 });
 
 router.post("/add-product", (req, res, next) => {
