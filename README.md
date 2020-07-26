@@ -65,3 +65,4 @@ My journey to learn Node JS
 -   Express allows us to set the value of the templating engine that we are using the in the application.
 -   To do that, we use the method `app.set()` where we can attatch some values to the express app (configuration setup).
 -   Express has some built in values that we can set (provided in the documentation) where we can change the configurations.
+-   For templating engines like HandleBars, we have to add more configurations like - importing it manually and using `app.engine()` to set teh default engine of the express app
