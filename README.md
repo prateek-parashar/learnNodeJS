@@ -70,4 +70,5 @@ My journey to learn Node JS
 -   Finally into EJS, Max held it back to probably highlight it's advantages as it's his favourite engine.
 -   It's not all bad, though the syntax reminds me of the work I did in struts (java).
 -   Writing javascript in html tags is cool. EJS kinda fixes both the issues I outlined in previously regarding handlebars and pug.
-It's great that we will be using this in this course.
+    It's great that we will be using this in this course.
+-   One problem with EJS is that it doesn't have a default layout for the views, which it solves by creating partials.
