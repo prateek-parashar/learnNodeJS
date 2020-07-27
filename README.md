@@ -62,6 +62,9 @@ My journey to learn Node JS
 -   Hence, Express forwards all the requests to files to the folder provided as an argument in the above function.
 -   This is basically a middleware which searches for all the file references in the project at the given location.
 -   The fact that we have to export the functions and variables from file to file is really annoying.
+
+### Templating Engines
+
 -   Express allows us to set the value of the templating engine that we are using the in the application.
 -   To do that, we use the method `app.set()` where we can attatch some values to the express app (configuration setup).
 -   Express has some built in values that we can set (provided in the documentation) where we can change the configurations.
@@ -72,3 +75,8 @@ My journey to learn Node JS
 -   Writing javascript in html tags is cool. EJS kinda fixes both the issues I outlined in previously regarding handlebars and pug.
     It's great that we will be using this in this course.
 -   One problem with EJS is that it doesn't have a default layout for the views, which it solves by creating partials.
+
+### Creating controllers in Express
+
+-   Controllers, atleast initially in the course are treated as middleware functions that work in between routes.
+-   This approach is alright, but these massive and continous imports, I have a feeling, if it doesn't improve soon , it can get raelly complex real quick.

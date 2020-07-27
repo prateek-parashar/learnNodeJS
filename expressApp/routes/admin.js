@@ -1,24 +1,12 @@
 const express = require("express");
 
-const path = require("path");
-
-const rootDir = require("../util/path");
+const productController = require("../controllers/product");
 
 const router = express.Router();
-const productsArray = [];
 
-router.get("/add-product", (req, res, next) => {
-    res.render("add-product", {
-        pageTitle: "Add Product",
-        path: "/admin/add-product",
-    });
-});
+router.get("/add-product", productController.getAddProduct);
 
-router.post("/add-product", (req, res, next) => {
-    productsArray.push({ title: req.body.title });
-    res.redirect("/shop");
-});
+router.post("/add-product", productController.postProduct);
 
 // Here, we are basically exporting an object whose keys will be the keys we set here for the exports object.
-exports.routes = router;
-exports.products = productsArray;
+module.exports = router;

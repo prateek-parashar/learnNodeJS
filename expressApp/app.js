@@ -5,6 +5,7 @@ const path = require("path");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const errorRoutes = require("./routes/error");
 const rootDir = require("./util/path");
 
 app.set("view engine", "ejs");
@@ -12,7 +13,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(rootDir, "public")));
 
-app.use("/admin", adminRoutes.routes);
+app.use("/admin", adminRoutes);
 app.use("/shop", shopRoutes);
 
 app.get("/", (req, res) => {
@@ -21,11 +22,8 @@ app.get("/", (req, res) => {
 });
 
 // Handling the not found requests!
-app.use((req, res, next) => {
-    res.status(404).render("404", {
-        pageTitle: "It's All Empty here",
-        path: "./",
-    });
-});
+// app.use(errorRoutes);
+
+app.use(errorRoutes);
 
 app.listen(3000);
