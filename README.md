@@ -79,4 +79,4 @@ My journey to learn Node JS
 ### Creating controllers in Express
 
 -   Controllers, atleast initially in the course are treated as middleware functions that work in between routes.
--   This approach is alright, but these massive and continous imports, I have a feeling, if it doesn't improve soon , it can get raelly complex real quick.
+-   This approach is alright, but these massive and continous imports, I have a feeling, if it doesn't improve soon , it can get really complex real quick.

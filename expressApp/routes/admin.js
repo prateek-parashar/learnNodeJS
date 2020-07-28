@@ -4,6 +4,8 @@ const productController = require("../controllers/product");
 
 const router = express.Router();
 
+// Creating the routes. Notice the methods used - app.get() and app.post()
+// Appropriate controllers are called to handle the request
 router.get("/add-product", productController.getAddProduct);
 
 router.post("/add-product", productController.postProduct);
