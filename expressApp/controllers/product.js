@@ -1,4 +1,4 @@
-const productsArray = [];
+const Product = require("../models/product");
 
 // Controllers
 exports.getAddProduct = (req, res, next) => {
@@ -9,11 +9,13 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postProduct = (req, res, next) => {
-    productsArray.push({ title: req.body.title });
+    const product = new Product(req.body.title);
+    product.save();
     res.redirect("/shop");
 };
 
 exports.getProductList = (req, res, next) => {
+    const productList = Product.fetchAll();
     res.render("shop", {
         pageTitle: "Shop",
         products: productsArray,
