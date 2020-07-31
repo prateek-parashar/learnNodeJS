@@ -8,13 +8,17 @@ const adminData = require("./admin");
 
 const router = express.Router();
 
+router.get("/", shopController.getIndex);
+
 router.get("/shop");
 
 router.get("/products", shopController.getProductList);
 
-router.get("/chekout");
+router.get("/cart", shopController.getCart);
 
-router.get("/cart");
+router.get("/orders", shopController.getOrders);
+
+router.get("/checkout", shopController.getCheckout);
 
 // Here, we are basically exporting an object whose keys will be the keys we set here for the exports object.
 module.exports = router;
