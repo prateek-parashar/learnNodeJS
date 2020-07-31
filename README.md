@@ -86,5 +86,6 @@ My journey to learn Node JS
 -   Somehow, I just still don't understand classes in javascript.
 -   After coding heavily in java, I don't get how the classes are constructed here.
 -   I understand they are just a syntactic sugar over the prototype based inheritence, but still. What the fuck does the `this` keyword mean at all the places? How do I use getters and setters? Why the fuck are arrow functions not working? I can create functions without the arrow and also without the `function1 keyword? What the fuck java script!
--   I am making progress slowly. Revisited the course by Anthony Alicea to understand jva script. Thte talk by Venkat Subramanium - "Discovering javascript" was really enlightening. He has another one called "Rediscovering javascript" which explores the ES6 features, which I will do over time as it's over 2 hours long. 
-
+-   I am making progress slowly. Revisited the course by Anthony Alicea to understand jva script. Thte talk by Venkat Subramanium - "Discovering javascript" was really enlightening. He has another one called "Rediscovering javascript" which explores the ES6 features, which I will do over time as it's over 2 hours long.
+-   Fought with file methods of node to get this code working.
+-   Had a first encounter with the lack of my asynchrocously thinking. I as trying to access the value which wasn't returned yet cause of the asyncronous file read operation. It was nice of Max to create a seperate video of that. And I feel great at having spotted the mistake before he aid so in the video with my own `printf` debugging skills xD.

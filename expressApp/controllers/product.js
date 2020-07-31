@@ -18,8 +18,8 @@ exports.getProductList = (req, res, next) => {
     const productList = Product.fetchAll();
     res.render("shop", {
         pageTitle: "Shop",
-        products: productsArray,
-        hasProducts: productsArray.length > 0,
+        products: productList,
+        hasProducts: productList.length > 0,
         path: "/shop",
     });
 };
