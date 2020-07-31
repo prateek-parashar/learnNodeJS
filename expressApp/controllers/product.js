@@ -11,7 +11,7 @@ exports.getAddProduct = (req, res, next) => {
 exports.postProduct = (req, res, next) => {
     const product = new Product(req.body.title);
     product.save();
-    res.redirect("/shop");
+    res.redirect("/");
 };
 
 exports.getProductList = (req, res, next) => {
@@ -20,7 +20,7 @@ exports.getProductList = (req, res, next) => {
             pageTitle: "Shop",
             products: productList,
             hasProducts: productList.length > 0,
-            path: "/shop",
+            path: "/",
         });
     });
 };

@@ -22,12 +22,7 @@ app.use(express.static(path.join(rootDir, "public")));
 
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
 app.use("/admin", adminRoutes);
-app.use("/shop", shopRoutes);
-
-app.get("/", (req, res) => {
-    console.log("HEllO THere!");
-    res.send("<h1> Back to home, eh? </h1>");
-});
+app.use("/", shopRoutes);
 
 // Handling the not found requests!
 app.use(errorRoutes);
