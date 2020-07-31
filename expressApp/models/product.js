@@ -9,6 +9,7 @@ module.exports = class Product {
         productsArray.push(this);
     }
 
+    // static methods are quite similar to the one in java
     static fetchAll() {
         return productsArray;
     }

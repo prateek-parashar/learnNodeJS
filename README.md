@@ -80,3 +80,11 @@ My journey to learn Node JS
 
 -   Controllers, atleast initially in the course are treated as middleware functions that work in between routes.
 -   This approach is alright, but these massive and continous imports, I have a feeling, if it doesn't improve soon , it can get really complex real quick.
+
+### Models and classes
+
+-   Somehow, I just still don't understand classes in javascript.
+-   After coding heavily in java, I don't get how the classes are constructed here.
+-   I understand they are just a syntactic sugar over the prototype based inheritence, but still. What the fuck does the `this` keyword mean at all the places? How do I use getters and setters? Why the fuck are arrow functions not working? I can create functions without the arrow and also without the `function1 keyword? What the fuck java script!
+-   I am making progress slowly. Revisited the course by Anthony Alicea to understand jva script. Thte talk by Venkat Subramanium - "Discovering javascript" was really enlightening. He has another one called "Rediscovering javascript" which explores the ES6 features, which I will do over time as it's over 2 hours long. 
+
