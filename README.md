@@ -94,5 +94,5 @@ My journey to learn Node JS
 ### Expanding the app
 
 -   More and more views are getting added which expand out app and of course, as a by product, start to make it more complicated. I really enjoy the pace of this course.
--   The speed with which the development of new features after the initial groundwork has been laid astonished me. But I think it will slow down as the complexity will grow more in size as well and the current groundwork will not be enough to hold on as the cracks begin to show up. I wonder if there's a relation to the amount of features an application can to the time it takes become enough unstable due to complexity and nears a point where a complete rewrite starts to feel a better solution than to manage it.
+-   The speed with which the development of new features after the initial groundwork has been laid astonished me. But I think it will slow down as the complexity will grow more in size as well and the current groundwork will not be enough to hold on as the cracks begin to show up. I wonder if there's a relation to the amount of time it takes to add n number of features can to the way a developer feels about maintaining the app.
 -   I still have a lot to learn about the database modelling and ways to structure my code better. Probably should start with the data base design or data oriented design soon.
