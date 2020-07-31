@@ -90,3 +90,7 @@ My journey to learn Node JS
 -   Fought with file methods of node to get this code working.
 -   Had a first encounter with the lack of my asynchrocously thinking. I as trying to access the value which wasn't returned yet cause of the asyncronous file read operation. It was nice of Max to create a seperate video of that. And I feel great at having spotted the mistake before he aid so in the video with my own `printf` debugging skills xD.
 -   Okay, I am way less behind in the callback world. Having watched the way Max solved the problem, I know that it would require more exposure to the asynchronous thinking. Whereas I solved the previous thing by modifying the read file function to a syncronous one, Max kept the function syncronous and then added `ANOTHER` callback on top of it to make it work. God damnit.
+
+### Expanding the app
+
+-   More and more views are getting added which expand out app and of course, as a by product, start to make it more complicated. I really enjoy the pace of this course.
