@@ -15,11 +15,12 @@ exports.postProduct = (req, res, next) => {
 };
 
 exports.getProductList = (req, res, next) => {
-    const productList = Product.fetchAll();
-    res.render("shop", {
-        pageTitle: "Shop",
-        products: productList,
-        hasProducts: productList.length > 0,
-        path: "/shop",
+    Product.fetchAll((productList) => {
+        res.render("shop", {
+            pageTitle: "Shop",
+            products: productList,
+            hasProducts: productList.length > 0,
+            path: "/shop",
+        });
     });
 };

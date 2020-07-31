@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = require("../util/path");
+const { createBrotliCompress } = require("zlib");
 const filePath = path.join(rootDir, "data", "productValue.json");
 
 module.exports = class Product {
@@ -25,8 +26,13 @@ module.exports = class Product {
     }
 
     // static methods are quite similar to the one in java
-    static fetchAll() {
-        let data = fs.readFileSync(filePath);
-        return JSON.parse(data);
+    static fetchAll(cb) {
+        fs.readFile(filePath, (err, data) => {
+            if (err) {
+                cb([]);
+            } else {
+                cb(JSON.parse(data));
+            }
+        });
     }
 };
