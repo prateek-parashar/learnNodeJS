@@ -14,13 +14,7 @@ exports.postProduct = (req, res, next) => {
     res.redirect("/");
 };
 
-exports.getProductList = (req, res, next) => {
-    Product.fetchAll((productList) => {
-        res.render("shop/product-list", {
-            pageTitle: "Shop",
-            products: productList,
-            hasProducts: productList.length > 0,
-            path: "/",
-        });
-    });
+
+exports.editProduct = (req, res, next) => {
+    console.log("inside Edit method");
 };
