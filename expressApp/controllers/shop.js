@@ -2,7 +2,9 @@ const Product = require("../models/product");
 
 exports.getProduct = (req, res, next) => {
     const id = req.params.productID;
-    console.log(id);
+    Product.findProductById(id, (product) => {
+        console.log(product);
+    });
 
     res.redirect("/");
 };
