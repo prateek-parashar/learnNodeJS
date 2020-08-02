@@ -17,7 +17,7 @@ const readDataFromFile = (cb) => {
 
 module.exports = class Product {
     constructor(title, imageURL, description, price) {
-        this.id = Math.floor(Math.random() * 1000);
+        this.id = Math.floor(Math.random() * 1000).toString();
         this.title = title;
         this.imageURL = imageURL;
         this.description = description;

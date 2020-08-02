@@ -19,5 +19,12 @@
         "imageURL": "https://m.media-amazon.com/images/I/51jxy5n-Y7L.jpg",
         "description": "The last book in the series. Explore the magical fairyland of Toussaint",
         "price": "33.89"
+    },
+    {
+        "id": "496",
+        "title": "Breaking Dawn",
+        "imageURL": "https://upload.wikimedia.org/wikipedia/en/3/31/Breaking_Dawn_cover.jpg",
+        "description": "The last part of the most weird love story",
+        "price": "7.99"
     }
 ]
