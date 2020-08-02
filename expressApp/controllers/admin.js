@@ -10,7 +10,8 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postProduct = (req, res, next) => {
-    const product = new Product(req.body.title, req.body.imageURL, req.body.description, req.body.price);
+    const id = Math.floor(Math.random() * 1000).toString();
+    const product = new Product(id, req.body.title, req.body.imageURL, req.body.description, req.body.price);
     product.save();
     res.redirect("/");
 };
@@ -41,4 +42,10 @@ exports.getEditProduct = (req, res, next) => {
             });
         });
     }
+};
+
+exports.editProduct = (req, res, next) => {
+    product = new Product(req.body.id, req.body.title, req.body.imageURL, req.body.description, req.body.price);
+    product.update();
+    res.redirect("/admin/products");
 };
