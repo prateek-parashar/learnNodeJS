@@ -3,10 +3,12 @@ const Product = require("../models/product");
 exports.getProduct = (req, res, next) => {
     const id = req.params.productID;
     Product.findProductById(id, (product) => {
-        console.log(product);
+        res.render("shop/product-detail", {
+            pageTitle: "Product Details",
+            product: product,
+            path: "shop/product-detail",
+        });
     });
-
-    res.redirect("/");
 };
 
 exports.getProductList = (req, res, next) => {
