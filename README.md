@@ -100,3 +100,5 @@ My journey to learn Node JS
 -   The fact that the request flow is dependent entirely on the order in which the code is written lexically still bothers me and I think could be a source of errors. I wonder how and why the Express people decided on this approach.
 -   One possible source of error which was shown by Max was like this : Suppose the route for dynamiclly accessing the product is like this - `product/:productID` and if perchance one ends up putting this **above** the route for say, delete which might be `product/delete` the dynamic route for deleting the product will never be reached as it will be considered a dynamic value which satisfies the condition for the dynamic access.
 -   For accessing the data values sent from the view to the backend, we have to use `req.params.{value}` for `GET` requests and `req.body.{value}` for `POST` requests
+-   We can also access the query parameters of the request by `req.query{value}`.
+-   The query parameters are passed by changing the URL dynamically.

@@ -12,7 +12,7 @@ router.post("/add-product", adminController.postProduct);
 
 router.get("/products", adminController.getProducts);
 
-router.get("/edit-product", adminController.editProduct);
+router.get("/edit-product/:productID", adminController.getEditProduct);
 
 // Here, we export an object whose keys will be the keys we set here for the exports object.
 module.exports = router;
