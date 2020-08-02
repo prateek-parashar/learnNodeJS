@@ -4,6 +4,16 @@ const path = require("path");
 const rootDir = require("../util/path");
 const filePath = path.join(rootDir, "data", "cart.json");
 
+const readDataFromFile = (cb) => {
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            cb([]);
+        } else {
+            cb(JSON.parse(data));
+        }
+    });
+};
+
 module.exports = class Cart {
     static addToCart(product) {
         //Fetch the existing cart (make a new one if it doesn't exist)
@@ -13,9 +23,7 @@ module.exports = class Cart {
                 cart = JSON.parse(data);
             }
             //Find the product to be added
-            const existingProductIndex = cart.products.findIndex(
-                (p) => p.id === product.id
-            );
+            const existingProductIndex = cart.products.findIndex((p) => p.id === product.id);
 
             const existingProduct = cart.products[existingProductIndex];
             let updatedProduct;
@@ -42,5 +50,9 @@ module.exports = class Cart {
                 }
             });
         });
+    }
+
+    static getCart(cb) {
+        readDataFromFile(cb);
     }
 };
