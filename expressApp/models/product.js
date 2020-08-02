@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = require("../util/path");
-const { createBrotliCompress } = require("zlib");
 const filePath = path.join(rootDir, "data", "productValue.json");
 
 const readDataFromFile = (cb) => {
