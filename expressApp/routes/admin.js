@@ -16,5 +16,7 @@ router.get("/edit-product/:productID", adminController.getEditProduct);
 
 router.post("/edit-product", adminController.editProduct);
 
+router.post("/delete-product", adminController.deleteProduct);
+
 // Here, we export an object whose keys will be the keys we set here for the exports object.
 module.exports = router;
