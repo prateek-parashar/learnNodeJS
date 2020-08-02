@@ -33,6 +33,7 @@ module.exports = class Cart {
             }
 
             // Update the price accordingly
+            // Unary '+' is added to convert the incoming string value of the price to a number
             cart.totalPrice += +product.price;
 
             fs.writeFile(filePath, JSON.stringify(cart), (err) => {
