@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const rootDir = require("../util/path");
+const db = require("../util/database");
 const filePath = path.join(rootDir, "data", "productValue.json");
 
 const readDataFromFile = (cb) => {
@@ -49,8 +50,9 @@ module.exports = class Product {
     }
 
     // static methods are quite similar to the one in java
-    static fetchAll(cb) {
-        readDataFromFile(cb);
+    static fetchAll() {
+        // readDataFromFile(cb);
+        return db.any("select * from products");
     }
 
     static findProductById(id, cb) {
