@@ -102,3 +102,17 @@ My journey to learn Node JS
 -   For accessing the data values sent from the view to the backend, we have to use `req.params.{value}` for `GET` requests and `req.body.{value}` for `POST` requests
 -   We can also access the query parameters of the request by `req.query{value}`.
 -   The query parameters are passed by changing the URL dynamically.
+
+### DataBases
+
+-   I am diverging from the course, while Max will use the MySql db, I will use the postgresDB for the project.
+-   Wrote the `Database.js` method to test the connection to the database which seemed to work just fine. I am using this package called as `pgp-promise`. A package which entirely depends on one single maintainer!!! I can't understand how a company can decide to build thier product relying on node modules. I mean, it seems quite unreliable. Perhaps, then it must drive the developers to have a much deeper undersntanding on how the entire package works under the hood so that they could make changes to it as they see fit in case of an unreliability / lack of maintainance. I understand that software doesn't rust (Thanks to Joel) but still, it isn't as if this module is an independent offering! It itself fepends on multiple things, which is just too many moving parts and this just screams like a disaster waiting to happen. Maybe I am not experienced enough to see it, and maybe it will be okay, but I don't like it at all even by thinking of it.
+-   Saw a weird syntax (weird to me maybe cause I am new to it) today while instantiating the `pgp` object. The syntax is like this -
+
+```
+    const pgp = require("pg-promise")();
+```
+
+Notice the extra pais of parenthesis at the end of the import statement. I had never seen them before, and even if it was evidently highlighed in the documentation, I missed them completely and ended up on the github issue where the author of the library had explained earlier (2015) to a user to just RTFM properly, lol.
+
+-   Created a successful postgres table and connected and retrieved data form it via the `pgp-promise` node package. A weird thing I faced was with inserting rows into the postgres table, apparently it reserves the double qoutes for the column names and table names explicitly. See [this](https://stackoverflow.com/questions/41396195/what-is-the-difference-between-single-quotes-and-double-quotes-in-postgresql) for more details if I ever need them.
