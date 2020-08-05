@@ -1,14 +1,5 @@
-const pgp = require("pg-promise")();
+const { Sequelize } = require("sequelize");
 
-const conn = {
-    host: "localhost",
-    port: 5432,
-    database: "nodeshop",
-    user: "postgres",
-    password: "test",
-    max: 30,
-};
+const sequelize = new Sequelize("nodeshop", "postgres", "test", { dialect: "postgres", host: "localhost" });
 
-const db = pgp(conn);
-
-module.exports = db;
+module.exports = sequelize;
