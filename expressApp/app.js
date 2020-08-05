@@ -5,11 +5,15 @@ const path = require("path");
 
 const sequelize = require("./util/database");
 
+const Product = require("./models/product");
+const User = require("./models/user");
+
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorRoutes = require("./routes/error");
 const rootDir = require("./util/path");
+const { userInfo } = require("os");
 
 // Setting the templating engine
 // (since ejs comes preconfigured with express, we can add it just like that,
@@ -28,6 +32,10 @@ app.use("/", shopRoutes);
 
 // Handling the not found requests!
 app.use(errorRoutes);
+
+//Defining association between models
+Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+User.hasMany(Product);
 
 // Syncing up the database with the help of sequelize
 sequelize
