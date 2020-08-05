@@ -3,6 +3,8 @@ const app = express();
 
 const path = require("path");
 
+const sequelize = require("./util/database");
+
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
@@ -27,5 +29,13 @@ app.use("/", shopRoutes);
 // Handling the not found requests!
 app.use(errorRoutes);
 
-// Finally Executing the request which allows the app to listen to the specified port
-app.listen(3000);
+// Syncing up the database with the help of sequelize
+sequelize
+    .sync()
+    .then(() => {
+        // Finally Executing the request which allows the app to listen to the specified port
+        app.listen(3000);
+    })
+    .catch((err) => {
+        console.error(err);
+    });

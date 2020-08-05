@@ -3,17 +3,21 @@ const Cart = require("../models/cart");
 
 exports.getProduct = (req, res, next) => {
     const id = req.params.productID;
-    Product.findProductById(id, (product) => {
-        res.render("shop/product-detail", {
-            pageTitle: "Product Details",
-            product: product,
-            path: "/products",
+    Product.findByPk(id)
+        .then((product) => {
+            res.render("shop/product-detail", {
+                pageTitle: "Product Details",
+                product: product,
+                path: "/products",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
         });
-    });
 };
 
 exports.getProductList = (req, res, next) => {
-    Product.fetchAll()
+    Product.findAll()
         .then((productList) => {
             res.render("shop/product-list", {
                 pageTitle: "All Products",
@@ -27,13 +31,17 @@ exports.getProductList = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-    Product.fetchAll((productList) => {
-        res.render("shop/index", {
-            pageTitle: "Home",
-            products: productList,
-            path: "/",
+    Product.findAll()
+        .then((productList) => {
+            res.render("shop/index", {
+                pageTitle: "Home",
+                products: productList,
+                path: "/",
+            });
+        })
+        .catch((err) => {
+            console.log(err);
         });
-    });
 };
 
 exports.getCart = (req, res, next) => {
