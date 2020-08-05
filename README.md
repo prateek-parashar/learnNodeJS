@@ -116,3 +116,4 @@ My journey to learn Node JS
 Notice the extra pais of parenthesis at the end of the import statement. I had never seen them before, and even if it was evidently highlighed in the documentation, I missed them completely and ended up on the github issue where the author of the library had explained earlier (2015) to a user to just RTFM properly, lol.
 
 -   Created a successful postgres table and connected and retrieved data form it via the `pgp-promise` node package. A weird thing I faced was with inserting rows into the postgres table, apparently it reserves the double qoutes for the column names and table names explicitly. See [this](https://stackoverflow.com/questions/41396195/what-is-the-difference-between-single-quotes-and-double-quotes-in-postgresql) for more details if I ever need them.
+-   Moving on to sequelize now
