@@ -43,28 +43,3 @@ app.use("/", shopRoutes);
 // Handling the not found requests!
 app.use(errorRoutes);
 
-//Defining association between models
-Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
-User.hasMany(Product);
-
-// Below code is by Max himself, which creates a dummy user that's persisted across the database
-
-// Syncing up the database with the help of sequelize
-sequelize
-    .sync()
-    .then((result) => {
-        return User.findByPk(1);
-    })
-    .then((user) => {
-        if (!user) {
-            return User.create({ name: "Leslie", email: "knope@parksandrec.com" });
-        }
-        return user;
-    })
-    .then((user) => {
-        // Finally Executing the request which allows the app to listen to the specified port
-        app.listen(3000);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
