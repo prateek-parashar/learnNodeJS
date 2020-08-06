@@ -103,7 +103,7 @@ My journey to learn Node JS
 -   We can also access the query parameters of the request by `req.query{value}`.
 -   The query parameters are passed by changing the URL dynamically.
 
-### DataBases
+### SQL DataBases
 
 -   I am diverging from the course, while Max will use the MySql db, I will use the postgresDB for the project.
 -   Wrote the `Database.js` method to test the connection to the database which seemed to work just fine. I am using this package called as `pgp-promise`. A package which entirely depends on one single maintainer!!! I can't understand how a company can decide to build thier product relying on node modules. I mean, it seems quite unreliable. Perhaps, then it must drive the developers to have a much deeper undersntanding on how the entire package works under the hood so that they could make changes to it as they see fit in case of an unreliability / lack of maintainance. I understand that software doesn't rust (Thanks to Joel) but still, it isn't as if this module is an independent offering! It itself fepends on multiple things, which is just too many moving parts and this just screams like a disaster waiting to happen. Maybe I am not experienced enough to see it, and maybe it will be okay, but I don't like it at all even by thinking of it.
@@ -121,3 +121,15 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   The importing of the `sequalize` object and the `sequalize.sync()` method both are a little finnicky. THe didn't pick up my User definition and just weren't ready to create a table for me!! Worked only when I imported it manually to the `app.js` file.
 -   Sequalize is freaking amazing!!!!! Though, the creator of `pgp-promise` Vitaly has mentioned that there might be performance issue with it, it still is an amazing ORM for node. Something which I am seeing here, and didn't yet in `hibernate` is the constant usage of `associations` for example, the ability to create Model entities completely based on the relation that they share. In this example, suppose a `User` object has a `one-to-many` relation with the `products` that it can create, then sequlize provides us a method to create a `product` with an instance of a `User`! How much I find this exciting maybe just a reminder to myself of how little I understand the power of relational databases. Gotta work more on that.
 -   Now I am going to move quickly through the sql lectures, as I would like to work with MongoDB straight away.
+
+### NOSQL DataBases
+
+-   Got a first look ever at a NOSQL database -> MongoDB (From the word hu*mongo*us clever!).
+-   So, comparing the terminology, from the sql databases to the nosql databases,
+    -   Table -> Collection
+    -   Rows/Relations -> Documents
+-   More points to note :
+    -   A document in the mongDB does not follow a schema! Which means, it's perfectly fine to save a product without any price and you don't have to insert `null` as you would in an SQL database.
+    -   MongoDB stores data in JSON format (Actually it's BSON short for Binary JSON, something which mongo converts JSON to for performance improvements).
+-   MongoDB allows and even invites us to create fewer relations by envouraging nested documents in the in the Collections. Even so, relations are perfectly possible and shold be used if the data duplication is too high.
+-   Cool!, we will be using cloud!! MongoDB Atlas baby! This is my first interaction with a remote cloud database, if you don't count postgres in the heroku world. This is what I wanted when I signed up for this course!
