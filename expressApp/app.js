@@ -26,6 +26,16 @@ app.use(express.urlencoded({ extended: true }));
 // This is a middleware that allows us to send static files in response (html files)
 app.use(express.static(path.join(rootDir, "public")));
 
+// Middleware added to handle the dummy user
+app.use((req, res, next) => {
+    User.findById(1)
+        .then((user) => {
+            req.user = user;
+            next();
+        })
+        .catch((err) => console.log(err));
+});
+
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
 app.use("/admin", adminRoutes);
 app.use("/", shopRoutes);
@@ -43,11 +53,11 @@ User.hasMany(Product);
 sequelize
     .sync()
     .then((result) => {
-        return User.findById(1);
+        return User.findByPk(1);
     })
     .then((user) => {
         if (!user) {
-            return User.create({ name: "Max", email: "test@test.com" });
+            return User.create({ name: "Leslie", email: "knope@parksandrec.com" });
         }
         return user;
     })
