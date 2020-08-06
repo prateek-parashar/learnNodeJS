@@ -1,7 +1,16 @@
-//Importing it like this cause intellisense doesn't seem to work otherwise
-// https://github.com/sequelize/sequelize/issues/11103
-const { Sequelize } = require("sequelize");
+const mongodb = require("mongodb");
 
-const sequelize = new Sequelize("nodeshop", "postgres", "test", { dialect: "postgres", host: "localhost" });
+const MongoClient = mongodb.MongoClient;
 
-module.exports = sequelize;
+const mongoConnect = (cb) => {
+    MongoClient.connect("mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/test?retryWrites=true&w=majority")
+        .then((client) => {
+            console.log("Connected to cloud DB");
+            cb(client);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+module.exports = mongoConnect;
