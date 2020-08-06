@@ -37,13 +37,24 @@ app.use(errorRoutes);
 Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
 User.hasMany(Product);
 
+// Below code is by Max himself, which creates a dummy user that's persisted across the database
+
 // Syncing up the database with the help of sequelize
 sequelize
     .sync()
-    .then(() => {
+    .then((result) => {
+        return User.findById(1);
+    })
+    .then((user) => {
+        if (!user) {
+            return User.create({ name: "Max", email: "test@test.com" });
+        }
+        return user;
+    })
+    .then((user) => {
         // Finally Executing the request which allows the app to listen to the specified port
         app.listen(3000);
     })
     .catch((err) => {
-        console.error(err);
+        console.log(err);
     });
