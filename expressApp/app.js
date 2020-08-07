@@ -3,6 +3,9 @@ const app = express();
 
 const path = require("path");
 
+//Importing the mongoDB connection
+const mongoConnect = require("./util/database").mongoConnect;
+
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
@@ -27,3 +30,7 @@ app.use("/", shopRoutes);
 
 // Handling the not found requests!
 app.use(errorRoutes);
+
+mongoConnect(() => {
+    app.listen(3000);
+});
