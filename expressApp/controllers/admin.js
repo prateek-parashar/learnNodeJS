@@ -10,7 +10,7 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postProduct = (req, res, next) => {
-    Product.create({
+    Product.save({
         title: req.body.title,
         imageURL: req.body.imageURL,
         description: req.body.description,

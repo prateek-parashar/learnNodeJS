@@ -1,4 +1,4 @@
-const db = require("../util/database").getDB();
+const { getDB } = require("../util/database");
 
 class Product {
     constructor(title, price, description, imageURL) {
@@ -8,32 +8,17 @@ class Product {
         this.imageURL = imageURL;
     }
 
-    save() {}
+    save() {
+        const db = getDB();
+        db.colletion("products")
+            .insertOne(this)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 }
-
-const Product = sequelize.define("product", {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false,
-    },
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    imageURL: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    price: {
-        type: DataTypes.DOUBLE,
-        allowNull: false,
-    },
-    description: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-});
 
 module.exports = Product;

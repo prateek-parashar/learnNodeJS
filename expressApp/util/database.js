@@ -13,7 +13,7 @@ const mongoConnect = (cb) => {
         })
         .catch((err) => {
             console.log(err);
-            throw err;
+            throw "Could not connect to the cloud DB";
         });
 };
 

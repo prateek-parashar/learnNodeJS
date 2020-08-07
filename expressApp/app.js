@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 
 //Importing the mongoDB connection
-const mongoConnect = require("./util/database").mongoConnect;
+const { mongoConnect } = require("./util/database");
 
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
