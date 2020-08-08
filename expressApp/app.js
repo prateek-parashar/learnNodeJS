@@ -5,15 +5,14 @@ const app = express();
 
 const path = require("path");
 
-//Importing the mongoDB connection
-const { mongoConnect } = require("./util/database");
+const User = require("./models/user");
 
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const errorRoutes = require("./routes/error");
 const rootDir = require("./util/path");
-const { userInfo } = require("os");
+const user = require("./models/user");
 
 // Setting the templating engine
 // (since ejs comes preconfigured with express, we can add it just like that,
@@ -26,6 +25,18 @@ app.use(express.urlencoded({ extended: true }));
 // This is a middleware that allows us to send static files in response (html files)
 app.use(express.static(path.join(rootDir, "public")));
 
+// This middleware is a hack to create a user and pass it around until we create authentication
+app.use((req, res, next) => {
+    User.findById("5f2ed1ec8508bb10749cf52a")
+        .then((user) => {
+            req.user = user;
+            next();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
 app.use("/admin", adminRoutes);
 app.use("/", shopRoutes);
@@ -36,6 +47,19 @@ app.use(errorRoutes);
 mongoose
     .connect("mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
+        User.findOne().then((user) => {
+            if (!user) {
+                const user = new User({
+                    name: "Leslie",
+                    email: "knope@parcsandrec.com",
+                    cart: {
+                        items: [],
+                    },
+                });
+                user.save();
+            }
+        });
+
         app.listen(3000);
     })
     .catch((err) => {

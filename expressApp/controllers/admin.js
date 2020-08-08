@@ -20,6 +20,7 @@ exports.postProduct = (req, res, next) => {
         price: price,
         imageURL: imageURL,
         description: description,
+        userId: req.user, //We don't have to pass in the id manually, mongoose picks it up automatically cause of type definition
     });
 
     product
