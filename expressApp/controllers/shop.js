@@ -3,7 +3,7 @@ const Cart = require("../models/cart");
 
 exports.getProduct = (req, res, next) => {
     const id = req.params.productID;
-    Product.findByPk(id)
+    Product.findById(id)
         .then((product) => {
             res.render("shop/product-detail", {
                 pageTitle: "Product Details",

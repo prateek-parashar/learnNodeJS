@@ -45,13 +45,13 @@ exports.getEditProduct = (req, res, next) => {
     const editMode = req.query.edit;
     if (editMode) {
         const id = req.params.productID;
-        Product.findByPk(id)
+        Product.findById(id)
             .then((product) => {
                 res.render("admin/edit-product", {
                     pageTitle: "Edit Product",
                     path: "/admin/edit-page",
                     editing: editMode,
-                    product: product,
+                    product: product,   
                 });
             })
             .catch((err) => {
