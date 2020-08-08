@@ -136,3 +136,5 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Connecting to and utilizing the cloud database for mongoDB feels great!
 -   This constant rewriting of the CRUD operations has become combersome now, thankfully, this will be the last and we move on to more interesting topics like authentication. Oh wait, there's the usage of Mongoose after this. lol
 -   The way that MongoDB handles object id is interesting and quite different. You have to create a special object using the mongoDB object to access the object id, which it stores in the variable `_id`
+-   MongoDB gives us 2 ways to update the any document we have in the collection. `replace` or `update` both of which are used in thier own way.
+-   Didn't work through all the methods for the MongoDB thing as we have to move towards Mongoose which is an ODM (Object Document Mapping) basically an implementation of the ORM in the NoSQL world.

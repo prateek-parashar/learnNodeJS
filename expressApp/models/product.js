@@ -1,4 +1,4 @@
-const mongodb = require("mongodb");
+const { ObjectID } = require("mongodb");
 
 const { getDB } = require("../util/database");
 
@@ -25,7 +25,7 @@ class Product {
         const db = getDB();
         return db
             .collection("products")
-            .replaceOne({ _id: new mongodb.ObjectID(id) }, updatedProduct)
+            .replaceOne({ _id: new ObjectID(id) }, updatedProduct)
             .then()
             .catch((err) => {
                 console.log(err);
@@ -48,7 +48,7 @@ class Product {
         const db = getDB();
         return db
             .collection("products")
-            .findOne({ _id: new mongodb.ObjectID(id) })
+            .findOne({ _id: new ObjectID(id) })
             .then((product) => {
                 return product;
             })
@@ -61,7 +61,7 @@ class Product {
         const db = getDB();
         return db
             .collection("products")
-            .deleteOne({ _id: new mongodb.ObjectID(id) })
+            .deleteOne({ _id: new ObjectID(id) })
             .then()
             .catch((err) => {
                 console.log(err);

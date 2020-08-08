@@ -1,4 +1,6 @@
 const express = require("express");
+const mongoose = require("mongoose");
+
 const app = express();
 
 const path = require("path");
@@ -31,6 +33,11 @@ app.use("/", shopRoutes);
 // Handling the not found requests!
 app.use(errorRoutes);
 
-mongoConnect(() => {
-    app.listen(3000);
-});
+mongoose
+    .connect("mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        app.listen(3000);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
