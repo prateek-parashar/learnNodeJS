@@ -135,4 +135,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Cool!, we will be using cloud!! MongoDB Atlas baby! This is my first interaction with a remote cloud database, if you don't count postgres in the heroku world. This is what I wanted when I signed up for this course!
 -   Connecting to and utilizing the cloud database for mongoDB feels great!
 -   This constant rewriting of the CRUD operations has become combersome now, thankfully, this will be the last and we move on to more interesting topics like authentication. Oh wait, there's the usage of Mongoose after this. lol
--   The way that MongoDB handles object id is interesting and quite different. You have to create a special object using the mongoDB object to access the object id.
+-   The way that MongoDB handles object id is interesting and quite different. You have to create a special object using the mongoDB object to access the object id, which it stores in the variable `_id`

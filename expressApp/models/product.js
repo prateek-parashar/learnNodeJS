@@ -20,6 +20,18 @@ class Product {
                 console.log(err);
             });
     }
+
+    static updateProduct(id, updatedProduct) {
+        const db = getDB();
+        return db
+            .collection("products")
+            .replaceOne({ _id: new mongodb.ObjectID(id) }, updatedProduct)
+            .then()
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
     static fetchAll() {
         const db = getDB();
         return db
@@ -34,13 +46,23 @@ class Product {
 
     static findById(id) {
         const db = getDB();
-        console.log(id);
         return db
             .collection("products")
-            .findOne({ _id: mongodb.ObjectID(id) })
+            .findOne({ _id: new mongodb.ObjectID(id) })
             .then((product) => {
                 return product;
             })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+    static deleteProduct(id) {
+        const db = getDB();
+        return db
+            .collection("products")
+            .deleteOne({ _id: new mongodb.ObjectID(id) })
+            .then()
             .catch((err) => {
                 console.log(err);
             });

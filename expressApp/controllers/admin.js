@@ -10,10 +10,10 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postProduct = (req, res, next) => {
-    title = req.body.title;
-    price = req.body.price;
-    imageURL = req.body.imageURL;
-    description = req.body.description;
+    const title = req.body.title;
+    const price = req.body.price;
+    const imageURL = req.body.imageURL;
+    const description = req.body.description;
 
     const product = new Product(title, price, description, imageURL);
 
@@ -51,7 +51,7 @@ exports.getEditProduct = (req, res, next) => {
                     pageTitle: "Edit Product",
                     path: "/admin/edit-page",
                     editing: editMode,
-                    product: product,   
+                    product: product,
                 });
             })
             .catch((err) => {
@@ -63,20 +63,15 @@ exports.getEditProduct = (req, res, next) => {
 
 exports.editProduct = (req, res, next) => {
     const id = req.body.id;
-    Product.update(
-        {
-            title: req.body.title,
-            imageURL: req.body.imageURL,
-            description: req.body.description,
-            price: req.body.price,
-        },
-        {
-            where: {
-                id: id,
-            },
-        }
-    )
-        .then((result) => {
+    const title = req.body.title;
+    const price = req.body.price;
+    const imageURL = req.body.imageURL;
+    const description = req.body.description;
+
+    const product = new Product(title, price, description, imageURL);
+
+    Product.updateProduct(id, product)
+        .then(() => {
             res.redirect("/admin/products");
         })
         .catch((err) => {
@@ -86,11 +81,7 @@ exports.editProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
     const id = req.body.id;
-    Product.destroy({
-        where: {
-            id: id,
-        },
-    })
+    Product.deleteProduct(id)
         .then((result) => {
             res.redirect("/admin/products");
         })
