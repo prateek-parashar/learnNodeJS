@@ -133,3 +133,6 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
     -   MongoDB stores data in JSON format (Actually it's BSON short for Binary JSON, something which mongo converts JSON to for performance improvements).
 -   MongoDB allows and even invites us to create fewer relations by envouraging nested documents in the in the Collections. Even so, relations are perfectly possible and shold be used if the data duplication is too high.
 -   Cool!, we will be using cloud!! MongoDB Atlas baby! This is my first interaction with a remote cloud database, if you don't count postgres in the heroku world. This is what I wanted when I signed up for this course!
+-   Connecting to and utilizing the cloud database for mongoDB feels great!
+-   This constant rewriting of the CRUD operations has become combersome now, thankfully, this will be the last and we move on to more interesting topics like authentication. Oh wait, there's the usage of Mongoose after this. lol
+
