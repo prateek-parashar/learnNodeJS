@@ -87,12 +87,17 @@ exports.addToCart = (req, res, next) => {
 };
 
 exports.getOrders = (req, res, next) => {
-    orders = [];
-    res.render("shop/order", {
-        pageTitle: "Orders",
-        path: "/orders",
-        orders: orders,
-    });
+    Order.find({ "user.userID": req.user._id })
+        .then((orders) => {
+            res.render("shop/order", {
+                pageTitle: "Orders",
+                path: "/orders",
+                orders: orders,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.addOrder = (req, res, next) => {
