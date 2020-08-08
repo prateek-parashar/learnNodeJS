@@ -10,11 +10,20 @@ class Product {
 
     save() {
         const db = getDB();
-        db.colletion("products")
+        return db
+            .collection("products")
             .insertOne(this)
-            .then((result) => {
-                console.log(result);
-            })
+            .then()
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+    static fetchAll() {
+        return db
+            .collection("products")
+            .find()
+            .toArray()
+            .then()
             .catch((err) => {
                 console.log(err);
             });

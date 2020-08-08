@@ -10,12 +10,15 @@ exports.getAddProduct = (req, res, next) => {
 };
 
 exports.postProduct = (req, res, next) => {
-    Product.save({
-        title: req.body.title,
-        imageURL: req.body.imageURL,
-        description: req.body.description,
-        price: req.body.price,
-    })
+    title = req.body.title;
+    price = req.body.price;
+    imageURL = req.body.imageURL;
+    description = req.body.description;
+
+    const product = new Product(title, price, description, imageURL);
+
+    product
+        .save()
         .then((result) => {
             res.redirect("/");
         })
@@ -25,7 +28,7 @@ exports.postProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-    Product.findAll()
+    Product.fetchAll()
         .then((productList) => {
             res.render("admin/product-list", {
                 pageTitle: "Home",
