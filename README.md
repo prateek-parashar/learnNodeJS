@@ -145,3 +145,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   We can create relations in mongoose with the help of the `ref` keyword and manually inserting the ID of the required model to another model. This is, of course apart from using embbeded dcuments.
 -   Mongoose allows us to define our own methods in the schema
 -   The `populate` method of mongoose is very powerful as it allows us to extract data of the referenced (related, associated) object
+-   `exports.addOrder` this method is very suspiciously written.

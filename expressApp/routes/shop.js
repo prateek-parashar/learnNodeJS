@@ -24,6 +24,8 @@ router.post("/cart-delete-item", shopController.deleteFromCart);
 
 router.get("/orders", shopController.getOrders);
 
+router.post("/create-order", shopController.addOrder);
+
 router.get("/checkout", shopController.getCheckout);
 
 // Here, we are basically exporting an object whose keys will be the keys we set here for the exports object.
