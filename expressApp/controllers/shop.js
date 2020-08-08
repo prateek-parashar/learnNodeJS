@@ -57,9 +57,14 @@ exports.getCart = (req, res, next) => {
 
 exports.addToCart = (req, res, next) => {
     const productId = req.body.productId;
-    Product.findProductById(productId, (product) => {
-        Cart.addToCart(product);
-    });
+
+    Product.findById(productId)
+        .then((product) => {
+            req.user.addToCart(product);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
     res.redirect("/cart");
 };

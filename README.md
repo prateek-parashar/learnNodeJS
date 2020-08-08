@@ -143,3 +143,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Yeah, it kinda works that way itself, so it kinda extends the model and gives it methods to do the CRUD operations directly instead of relying on any external DB object.
 -   We can also embbed documents inside other documents in MongoDB, which is kinda similar to the work we do in java with Hibernate.
 -   We can create relations in mongoose with the help of the `ref` keyword and manually inserting the ID of the required model to another model. This is, of course apart from using embbeded dcuments.
+-   Mongoose allows us to define our own methods in the schema

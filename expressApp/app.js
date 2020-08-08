@@ -27,7 +27,7 @@ app.use(express.static(path.join(rootDir, "public")));
 
 // This middleware is a hack to create a user and pass it around until we create authentication
 app.use((req, res, next) => {
-    User.findById("5f2ed1ec8508bb10749cf52a")
+    User.findById("5f2ee8394ce47b1d98b327f3")
         .then((user) => {
             req.user = user;
             next();
