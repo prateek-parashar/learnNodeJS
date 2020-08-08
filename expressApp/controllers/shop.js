@@ -45,14 +45,20 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
-    Cart.getCart((cart) => {
-        res.render("shop/cart", {
-            pageTitle: "Your Cart",
-            path: "/cart",
-            products: cart.products,
-            totalPrice: cart.totalPrice,
+    req.user
+        .populate("cart.items.productID")
+        .execPopulate()
+        .then((user) => {
+            productList = user.cart.items;
+            res.render("shop/cart", {
+                pageTitle: "Cart",
+                path: "/cart",
+                products: productList,
+            });
+        })
+        .catch((err) => {
+            console.log(err);
         });
-    });
 };
 
 exports.addToCart = (req, res, next) => {
