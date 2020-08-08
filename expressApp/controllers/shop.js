@@ -1,5 +1,4 @@
 const Product = require("../models/product");
-const Cart = require("../models/cart");
 
 exports.getProduct = (req, res, next) => {
     const id = req.params.productID;
@@ -61,25 +60,49 @@ exports.getCart = (req, res, next) => {
         });
 };
 
+exports.deleteFromCart = (req, res, next) => {
+    const productId = req.body.productId;
+    req.user
+        .deleteFromCart(productId)
+        .then((result) => {
+            res.redirect("/cart");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
 exports.addToCart = (req, res, next) => {
     const productId = req.body.productId;
 
     Product.findById(productId)
         .then((product) => {
             req.user.addToCart(product);
+            res.redirect("/cart");
         })
         .catch((err) => {
             console.log(err);
         });
-
-    res.redirect("/cart");
 };
 
 exports.getOrders = (req, res, next) => {
-    res.render("shop/orders", {
+    orders = [];
+    res.render("shop/order", {
         pageTitle: "Orders",
         path: "/orders",
+        orders: orders,
     });
+};
+
+exports.postOrder = (req, res, next) => {
+    req.user
+        .addOrder()
+        .then((result) => {
+            res.redirect("/orders");
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.getCheckout = (req, res, next) => {
