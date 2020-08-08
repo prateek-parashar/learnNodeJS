@@ -139,3 +139,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   MongoDB gives us 2 ways to update the any document we have in the collection. `replace` or `update` both of which are used in thier own way.
 -   Didn't work through all the methods for the MongoDB thing as we have to move towards Mongoose which is an ODM (Object Document Mapping) basically an implementation of the ORM in the NoSQL world.
 -   Mongoose promotes the schema based architecture, so we kind of go to forcing the schema ways that are prevalent in the SQL world.
+-   In mongoose, you first create a schema and then create a model based on that schema! Which, kinda feels like a way to imitate the POJOs of Java

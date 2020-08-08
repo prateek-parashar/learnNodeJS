@@ -17,7 +17,7 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getProductList = (req, res, next) => {
-    Product.fetchAll()
+    Product.find()
         .then((productList) => {
             res.render("shop/product-list", {
                 pageTitle: "All Products",
@@ -31,7 +31,7 @@ exports.getProductList = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-    Product.fetchAll()
+    Product.find()
         .then((productList) => {
             res.render("shop/index", {
                 pageTitle: "Home",
