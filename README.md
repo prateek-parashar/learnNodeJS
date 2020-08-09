@@ -148,3 +148,12 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   `exports.addOrder` this method is very suspiciously written.
 -   Always remember to restart after changes in the ejs files
 -   The suspicious part in the method `exports.addOrder` is the part where we ill in the product data by just using the products id by the method `productID._doc`, which tells mongoose to fetch the data, kind of a similar operation which populate did.
+
+### Authentication
+
+-   Done with all the basic CRUD operations.
+-   Starting off with the most naive solution to handle a login session is the request driven solution where we set the `req.isLoggedIn` parameter and then set it to true on a successful login. And then send this value to every view and check for it before rendering the pages. This is clearly not worth even looking at since the date from a request is gone the moment even a single response is rendered. The only thing we can get from this is that each and every request is viewed as an independent request.
+-   Cookies are an elegant way to handle the login session conundrum. Cookies are headers that we can set from the backend, and it gets saved in the browser of the user. The fact that they are saved in the browser of the user makes sure that they are isolated from one user to another.
+-   Once they are set, cookies are sent along with every subsequent requests to the server which means that cookies are a cross request data storage object.
+-   Cookies however are not the correct way to store sensetive data such as the `isLoggedInParameter` as they can be edited from the dev tool. They are best left to tracking users.
+-   Sessions are the solution that was raised in the last point. Session is stored server side, but we ues the cookies (called `session cookies`) to store the id of the session, which we hash and store server side, which allows us to make sure that a user remains in the session for all the requests, and at the same time, he cannot assume a different identity or bypass the login functionality by changing the session as it is hashed and stored in the server side.

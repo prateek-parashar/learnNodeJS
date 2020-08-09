@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 const app = express();
 
@@ -42,6 +43,9 @@ app.use((req, res, next) => {
 app.use(authRoutes);
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
+
+// Initializing the session middleware
+app.use(session({ secret: "test secret", resave: false, saveUninitialized: false }));
 
 // Handling the not found requests!
 app.use(errorRoutes);
