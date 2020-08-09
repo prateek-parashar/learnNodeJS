@@ -35,20 +35,21 @@ app.use(express.urlencoded({ extended: true }));
 // This is a middleware that allows us to send static files in response (html files)
 app.use(express.static(path.join(rootDir, "public")));
 
+// Initializing the session middleware
+app.use(session({ secret: "test secret", resave: false, saveUninitialized: false, store: store }));
+
 // This middleware is a hack to create a user and pass it around until we create authentication
 app.use((req, res, next) => {
-    User.findById("5f2ee8394ce47b1d98b327f3")
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
         .then((user) => {
             req.user = user;
             next();
         })
-        .catch((err) => {
-            console.log(err);
-        });
+        .catch((err) => console.log(err));
 });
-
-// Initializing the session middleware
-app.use(session({ secret: "test secret", resave: false, saveUninitialized: false, store: store }));
 
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
 app.use(authRoutes);
@@ -61,21 +62,6 @@ app.use(errorRoutes);
 mongoose
     .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        User.findOne().then((user) => {
-            if (!user) {
-                const user = new User({
-                    name: "Leslie",
-                    email: "knope@parcsandrec.com",
-                    cart: {
-                        items: [],
-                    },
-                });
-                user.save();
-            }
-        });
-
         app.listen(3000);
     })
-    .catch((err) => {
-        console.log(err);
-    });
+    .catch((err) => console.log(err));
