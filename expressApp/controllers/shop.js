@@ -23,6 +23,7 @@ exports.getProductList = (req, res, next) => {
                 pageTitle: "All Products",
                 products: productList,
                 path: "/products",
+                isAuthenticated: req.isLoggedIn,
             });
         })
         .catch((err) => {

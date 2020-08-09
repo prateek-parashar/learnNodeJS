@@ -1,12 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 const app = express();
 
 const path = require("path");
 
 const User = require("./models/user");
+
+const MONGODB_URI = "mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority";
+
+const store = new MongoDBStore({
+    uri: MONGODB_URI,
+    collection: "session",
+});
 
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
@@ -39,19 +47,19 @@ app.use((req, res, next) => {
         });
 });
 
+// Initializing the session middleware
+app.use(session({ secret: "test secret", resave: false, saveUninitialized: false }));
+
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
 app.use(authRoutes);
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
-// Initializing the session middleware
-app.use(session({ secret: "test secret", resave: false, saveUninitialized: false }));
-
 // Handling the not found requests!
 app.use(errorRoutes);
 
 mongoose
-    .connect("mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         User.findOne().then((user) => {
             if (!user) {
