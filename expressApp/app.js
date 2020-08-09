@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 });
 
 // Initializing the session middleware
-app.use(session({ secret: "test secret", resave: false, saveUninitialized: false }));
+app.use(session({ secret: "test secret", resave: false, saveUninitialized: false, store: store }));
 
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
 app.use(authRoutes);
