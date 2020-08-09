@@ -146,3 +146,5 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Mongoose allows us to define our own methods in the schema
 -   The `populate` method of mongoose is very powerful as it allows us to extract data of the referenced (related, associated) object
 -   `exports.addOrder` this method is very suspiciously written.
+-   Always remember to restart after changes in the ejs files
+-   The suspicious part in the method `exports.addOrder` is the part where we ill in the product data by just using the products id by the method `productID._doc`, which tells mongoose to fetch the data, kind of a similar operation which populate did.
