@@ -10,6 +10,7 @@ const User = require("./models/user");
 // Importing the routes from the files
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const authRoutes = require("./routes/auth");
 const errorRoutes = require("./routes/error");
 const rootDir = require("./util/path");
 const user = require("./models/user");
@@ -38,8 +39,9 @@ app.use((req, res, next) => {
 });
 
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**
+app.use(authRoutes);
 app.use("/admin", adminRoutes);
-app.use("/", shopRoutes);
+app.use(shopRoutes);
 
 // Handling the not found requests!
 app.use(errorRoutes);
