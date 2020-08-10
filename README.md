@@ -160,3 +160,5 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   The `express-session` package, after being added as a middleware, sets a session attribute to the `req` object and we can add more data to the session object.
 -   Sessions are a powerful construct which allows us to save user data which we do not want to lose for every request and which is also not public enough to be directly stored in a cookie.
 -   Ofcourse, for a saving the session in server side, we have to do it in a database, which is done quite easily with the help of `connect-mongodb-session`.
+-   Using `bcrypt` for encrypting the passwords.
+-   Route protection was an intersting topic. The way the requests flow can be manipulated in express really shines through in implementing such a logic.
