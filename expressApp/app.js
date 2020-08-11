@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
+const flash = require("connect-flash");
 
 const app = express();
 
@@ -44,25 +45,15 @@ app.use(session({ secret: "test secret", resave: false, saveUninitialized: false
 // Initializing the csrf protection middleware
 app.use(csrfProtection);
 
+// Initializing the flash middleware
+app.use(flash());
+
 // Setting the local variables which are sent to each and every rendered view
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.isLoggedIn;
     res.locals.csrfToken = req.csrfToken();
 
     next();
-});
-
-// This middleware is a hack to create a user and pass it around until we create authentication
-app.use((req, res, next) => {
-    if (!req.session.user) {
-        return next();
-    }
-    User.findById(req.session.user._id)
-        .then((user) => {
-            req.user = user;
-            next();
-        })
-        .catch((err) => console.log(err));
 });
 
 // Here, we use the routes **Remember that in express, all middlewares work from top to bottom**

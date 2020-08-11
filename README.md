@@ -166,3 +166,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   The CSRF token is something we keep track of only on our rendered view and not on the session, as the latter can be stolen. We do this by keeping a hidden input field and setting the value to the securely generated CSRF token from server side. The package that we are using here, `csurf` mandates that the hidden input field where we set the token should be named as `_csrf`
 -   The csrf input field should be present in every view and in every form as the main point of CSRF is to prevent `POST` request from malicious user.
 -   `req.locals.{variable}` is godsend!!
+-   Flash messages are an effective way to provide feedback to the user. They are convinient and are utilized in a `use and throw` manner by attatching and removing them from the session so as now to pollute the session variable.
