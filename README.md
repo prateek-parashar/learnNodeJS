@@ -162,3 +162,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Ofcourse, for a saving the session in server side, we have to do it in a database, which is done quite easily with the help of `connect-mongodb-session`.
 -   Using `bcrypt` for encrypting the passwords.
 -   Route protection was an intersting topic. The way the requests flow can be manipulated in express really shines through in implementing such a logic.
+-   CSRF attacks are interesting and so is the way that they are handled. We use a CSRF token to prevent them. The package we use to generate the token in express is `csurf`.
