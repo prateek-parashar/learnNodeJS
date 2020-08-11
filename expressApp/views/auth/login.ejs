@@ -8,7 +8,7 @@
 
     <main>
         <% if (flashMessage) {  %>
-            <div><%= flashMessage  %></div>
+            <div class="user-message user-message--error"><%= flashMessage  %></div>
         <% } %>
             
         <form class="login-form" action="/login" method="POST">
