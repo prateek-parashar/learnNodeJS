@@ -3,6 +3,7 @@
     <button id="side-menu-toggle">Menu</button>
     <nav class="main-header__nav">
         <ul class="main-header__item-list">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <li class="main-header__item">
                 <a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
             </li>
@@ -35,6 +36,7 @@
             <% } else { %>
             <li class="main-header__item">
                 <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                     <button type="submit">Logout</button>
                 </form>
             </li>
@@ -45,6 +47,7 @@
 
 <nav class="mobile-nav">
     <ul class="mobile-nav__item-list">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <li class="mobile-nav__item">
             <a class="<%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
         </li>
@@ -74,6 +77,7 @@
         <% } else { %>
         <li class="mobile-nav__item">
             <form action="/logout" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
                 <button type="submit">Logout</button>
             </form>
         </li>

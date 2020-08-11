@@ -163,3 +163,6 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Using `bcrypt` for encrypting the passwords.
 -   Route protection was an intersting topic. The way the requests flow can be manipulated in express really shines through in implementing such a logic.
 -   CSRF attacks are interesting and so is the way that they are handled. We use a CSRF token to prevent them. The package we use to generate the token in express is `csurf`.
+-   The CSRF token is something we keep track of only on our rendered view and not on the session, as the latter can be stolen. We do this by keeping a hidden input field and setting the value to the securely generated CSRF token from server side. The package that we are using here, `csurf` mandates that the hidden input field where we set the token should be named as `_csrf`
+-   The csrf input field should be present in every view and in every form as the main point of CSRF is to prevent `POST` request from malicious user.
+-   `req.locals.{variable}` is godsend!!

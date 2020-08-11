@@ -44,6 +44,14 @@ app.use(session({ secret: "test secret", resave: false, saveUninitialized: false
 // Initializing the csrf protection middleware
 app.use(csrfProtection);
 
+// Setting the local variables which are sent to each and every rendered view
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.csrfToken = req.csrfToken();
+
+    next();
+});
+
 // This middleware is a hack to create a user and pass it around until we create authentication
 app.use((req, res, next) => {
     if (!req.session.user) {
