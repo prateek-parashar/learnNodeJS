@@ -1,6 +1,16 @@
 const bcrypt = require("bcryptjs");
+const nodemailer = require("nodemailer");
 
 const User = require("../models/user");
+
+const transporter = nodemailer.createTransport({
+    host: "smtp.ethereal.email",
+    port: 587,
+    auth: {
+        user: "wilhelmine.cronin@ethereal.email",
+        pass: "66zMsRRAQuwRDhUyKj",
+    },
+});
 
 exports.getLogin = (req, res, next) => {
     let flashMessage = req.flash("errMessage");
@@ -93,6 +103,16 @@ exports.postSignup = (req, res, next) => {
                     })
                     .then((result) => {
                         res.redirect("/login");
+                        return transporter.sendMail({
+                            from: '"Fred Foo 👻" <foo@example.com>', // sender address
+                            to: "bar@example.com, baz@example.com", // list of receivers
+                            subject: "Hello ✔", // Subject line
+                            text: "Hello world?", // plain text body
+                            html: "<b>Hello world?</b>", // html body
+                        });
+                    })
+                    .catch((err) => {
+                        console.log(err);
                     });
             }
         })
