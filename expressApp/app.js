@@ -48,6 +48,19 @@ app.use(csrfProtection);
 // Initializing the flash middleware
 app.use(flash());
 
+// Setting the user for the session
+app.use((req, res, next) => {
+    if (!req.session.user) {
+        return next();
+    }
+    User.findById(req.session.user._id)
+        .then((user) => {
+            req.user = user;
+            next();
+        })
+        .catch((err) => console.log(err));
+});
+
 // Setting the local variables which are sent to each and every rendered view
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.isLoggedIn;
