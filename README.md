@@ -168,3 +168,7 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   `req.locals.{variable}` is godsend!!
 -   Flash messages are an effective way to provide feedback to the user. They are convinient and are utilized in a `use and throw` manner by attatching and removing them from the session so as now to pollute the session variable. We use the package `flash-connect`.
 -   Sent a mail via node from the `nodemailer` server called `ethreal`.
+-   Just to remind myself again, so far I have seen all these ways to extract information from the `req` object:
+    -   `req.body` - From input fields
+    -   `req.params` - From the url, set in the routes (eg - `/edit/:productID`)
+    -   `req.session` - Of course, can only be accessed if we set the session object.
