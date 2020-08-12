@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const user = require("../models/user");
 
 // Controllers
 exports.getAddProduct = (req, res, next) => {
@@ -34,7 +35,7 @@ exports.postProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-    Product.find()
+    Product.find({ userId: req.session.user._id })
         .then((productList) => {
             res.render("admin/product-list", {
                 pageTitle: "Home",
@@ -76,14 +77,16 @@ exports.editProduct = (req, res, next) => {
 
     Product.findById(id)
         .then((product) => {
+            if (product.userId.toString() !== req.session.user._id.toString()) {
+                return res.redirect("/");
+            }
             product.title = updatedTitle;
             product.price = updatedPrice;
             product.imageURL = updatedImageURL;
             product.description = updatedDescription;
-            return product.save();
-        })
-        .then(() => {
-            res.redirect("/admin/products");
+            return product.save().then((result) => {
+                res.redirect("/admin/products");
+            });
         })
         .catch((err) => {
             console.log(err);
@@ -92,7 +95,7 @@ exports.editProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
     const id = req.body.id;
-    Product.findByIdAndDelete(id)
+    Product.deleteOne({ _id: id, userId: req.session.user._id })
         .then((result) => {
             res.redirect("/admin/products");
         })
