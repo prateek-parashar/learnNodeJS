@@ -1,6 +1,8 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+
+// This stores (in an array) all the errors thrown by the validators used in the route.
 const { validationResult } = require("express-validator");
 
 const User = require("../models/user");

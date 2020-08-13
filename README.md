@@ -176,4 +176,5 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 ### Data Validation and Error handling
 
 -   `express-validator` is for data validation.
--   Works in a similar way to things like the `flash messages` and the `session` libraries, by being added in the middle ware, however, it's actively added whereever required in the `routes` rather than being added in the `app.js` file onl once.
+-   Works in a similar way to things like the `flash messages` and the `session` libraries, by being added in the middle ware, however, it's actively added whereever required in the `routes` rather than being added in the `app.js` file only once.
+-   `express-validator` has a rich library of validation functions that we can use to validate our date. And of course, it allows us to create custom validator functions. After all, what is a validator but an if else function.
