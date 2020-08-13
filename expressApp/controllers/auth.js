@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const { validationResult } = require("express-validator");
 
 const User = require("../models/user");
 const { request } = require("http");
@@ -64,7 +65,7 @@ exports.postLogin = (req, res, next) => {
                         return res.redirect("/login");
                     } else {
                         req.session.isLoggedIn = true;
-                        req.session.user = user;    
+                        req.session.user = user;
                         return req.session.save((err) => {
                             if (err) {
                                 console.log(err);
@@ -85,6 +86,16 @@ exports.postSignup = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(422).render("auth/signup", {
+            path: "/signup",
+            pageTitle: "Signup",
+            flashMessage: errors.array()[0].msg,
+        });
+    }
 
     User.findOne({ email: email })
         .then((user) => {

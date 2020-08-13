@@ -172,3 +172,8 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
     -   `req.body` - From input fields
     -   `req.params` - From the url, set in the routes (eg - `/edit/:productID`)
     -   `req.session` - Of course, can only be accessed if we set the session object.
+
+### Data Validation and Error handling
+
+-   `express-validator` is for data validation.
+-   Works in a similar way to things like the `flash messages` and the `session` libraries, by being added in the middle ware, however, it's actively added whereever required in the `routes` rather than being added in the `app.js` file onl once.
