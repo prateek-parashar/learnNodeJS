@@ -99,40 +99,30 @@ exports.postSignup = (req, res, next) => {
         });
     }
 
-    User.findOne({ email: email })
-        .then((user) => {
-            if (user) {
-                req.flash("errMessage", "User already exists");
-                return res.redirect("/signup");
-            } else {
-                return bcrypt
-                    .hash(password, 12)
-                    .then((hashedPassword) => {
-                        const user = new User({
-                            email: email,
-                            password: hashedPassword,
-                            cart: { items: [] },
-                        });
+    bcrypt
+        .hash(password, 12)
+        .then((hashedPassword) => {
+            const user = new User({
+                email: email,
+                password: hashedPassword,
+                cart: { items: [] },
+            });
 
-                        return user.save();
-                    })
-                    .then((result) => {
-                        res.redirect("/login");
-                        return transporter.sendMail({
-                            from: '"Fred Foo 👻" <foo@example.com>', // sender address
-                            to: "bar@example.com, baz@example.com", // list of receivers
-                            subject: "Hello ✔", // Subject line
-                            text: "Hello world?", // plain text body
-                            html: "<b>Hello world?</b>", // html body
-                        });
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
-            }
+            return user.save();
         })
-
-        .catch((err) => console.log(err));
+        .then((result) => {
+            res.redirect("/login");
+            return transporter.sendMail({
+                from: '"Fred Foo 👻" <foo@example.com>', // sender address
+                to: "bar@example.com, baz@example.com", // list of receivers
+                subject: "Hello ✔", // Subject line
+                text: "Hello world?", // plain text body
+                html: "<b>Hello world?</b>", // html body
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
 
 exports.postLogout = (req, res, next) => {
