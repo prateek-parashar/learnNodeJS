@@ -45,6 +45,7 @@ exports.getSignup = (req, res, next) => {
         path: "/signup",
         pageTitle: "Signup",
         flashMessage: flashMessage,
+        userInput: { email: "", password: "", confirmPassword: "" },
     });
 };
 
@@ -96,6 +97,7 @@ exports.postSignup = (req, res, next) => {
             path: "/signup",
             pageTitle: "Signup",
             flashMessage: errors.array()[0].msg,
+            userInput: { email: email, password: password, confirmPassword: confirmPassword },
         });
     }
 
