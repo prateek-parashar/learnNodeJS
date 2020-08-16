@@ -1,5 +1,6 @@
 const Product = require("../models/product");
 const user = require("../models/user");
+const fileHelper = require("../util/file");
 
 // Controllers
 exports.getAddProduct = (req, res, next) => {
@@ -83,6 +84,7 @@ exports.editProduct = (req, res, next) => {
             product.title = updatedTitle;
             product.price = updatedPrice;
             if (updatedImage) {
+                fileHelper.deleteFile(product.imageURL);
                 product.imageURL = updatedImage.path;
             }
             product.description = updatedDescription;
@@ -97,11 +99,18 @@ exports.editProduct = (req, res, next) => {
 
 exports.deleteProduct = (req, res, next) => {
     const id = req.body.id;
-    Product.deleteOne({ _id: id, userId: req.session.user._id })
+    Product.findById(id)
+        .then((product) => {
+            if (!product) {
+                return next(new Error(err));
+            }
+            fileHelper.deleteFile(product.imageURL);
+            return Product.deleteOne({ _id: id, userId: req.session.user._id });
+        })
         .then((result) => {
             res.redirect("/admin/products");
         })
         .catch((err) => {
-            console.log(err);
+            return next(new Error(err));
         });
 };
