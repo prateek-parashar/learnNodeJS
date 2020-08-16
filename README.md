@@ -180,3 +180,25 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   `express-validator` has a rich library of validation functions that we can use to validate our date. And of course, it allows us to create custom validator functions. After all, what is a validator but an if else function.
 -   The validator module has a lot of functionality. The way that we are using to identify which parameters has the error and to change the class of that form parameters (this piece of code here - `validationError.find(e => e.param === 'email') ? 'invalid': ''`) this uses the error object created by the validator module which has a param field to keep track of the parameters.
 -   Apart from validation, this node module also provides a lot of data sanitization methods which allow us to trim white spaces (`.trim()`), normalize the case on input (used while saving email addresses) and even security sanitization.
+
+### Error Handling
+
+-   There will be errors in the application.
+-   Errors can be cause by different things -
+
+    -   Technical or Network errors (DB Down! Server failure!)
+        Can't do much about it, best case scenario would be to show an apologetic error page to the user and maybe send an email to the system administrator.
+    -   User Errors or Expected errors (Uploaded file type is incorrect, data validation, File size is too high to read)
+        In these cases, we should first inform the user and then allow them to retry
+    -   Bugs and Logical errors
+        Can't be handled on runtime, should be eliminated during testing and development.
+
+-   For synchrocous operations, we have the `try-catch` mechanisms to handle errors and in asynchronous operations, we use the `then-catch` mechanism.
+-   After the error has occured, we might handle it by displaying an error page, redirecting the user or keep the user on the same page and display the error message to guide the user further.
+
+-   Express provides us with its own central error handler where we pass in the error object to the `next` function of the request. Upon receiving such a request, express skips all other middlewares and calls in the special error middleware (which has to be defined by us) which looks like this `app.use((err, req, res, next) => {})` wherein we can handle our errors as appropriate.
+-   The above is a neat solution rather than just writing `console.log(err)` in each and every catch block, which in my opinion does nothing for the user.
+-   The express error handling middleware works differently for sync and async code. To reach the express error handler from sync code, we can simple throw the error like `throw new Error()` but for async code, we have to pass the error inside the `next` function.
+-   One problem I encounterd while working on this was the triggering of infinite loop on the error checking mechanism for the user sesssion. It was triggered cause the middleware where I assign the user to the session executes every time a request is sent, and since I was redirecting the request in my error handling middleware, I ended up causing an infinite back and forth between the 2 middleware function. Should avoid that.
+-   For every redirection / error or more generally every freaking response, we should adhere to the standart status codes. Exhaustive list here -> https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+-   

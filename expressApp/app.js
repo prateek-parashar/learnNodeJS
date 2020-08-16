@@ -11,7 +11,8 @@ const path = require("path");
 
 const User = require("./models/user");
 
-const MONGODB_URI = "mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority";
+const MONGODB_URI =
+    "mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority";
 
 const store = new MongoDBStore({
     uri: MONGODB_URI,
@@ -55,10 +56,16 @@ app.use((req, res, next) => {
     }
     User.findById(req.session.user._id)
         .then((user) => {
+            if (!user) {
+                return next();
+            }
             req.user = user;
             next();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            next();
+        });
 });
 
 // Setting the local variables which are sent to each and every rendered view
@@ -77,9 +84,15 @@ app.use(shopRoutes);
 // Handling the not found requests!
 app.use(errorRoutes);
 
+app.use((err, req, res, next) => {
+    res.redirect("/500");
+});
+
 mongoose
     .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(3000);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+        throw new Error(err);
+    });
