@@ -19,7 +19,7 @@ exports.postProduct = (req, res, next) => {
     const product = new Product({
         title: title,
         price: price,
-        imageURL: imageURL,
+        imageURL: image.path,
         description: description,
         userId: req.user, //We don't have to pass in the id manually, mongoose picks it up automatically cause of type definition
     });
@@ -72,7 +72,7 @@ exports.editProduct = (req, res, next) => {
     const id = req.body.id;
     const updatedTitle = req.body.title;
     const updatedPrice = req.body.price;
-    const updatedImageURL = req.body.imageURL;
+    const updatedImage = req.file;
     const updatedDescription = req.body.description;
 
     Product.findById(id)
@@ -82,7 +82,9 @@ exports.editProduct = (req, res, next) => {
             }
             product.title = updatedTitle;
             product.price = updatedPrice;
-            product.imageURL = updatedImageURL;
+            if (updatedImage) {
+                product.imageURL = updatedImage.path;
+            }
             product.description = updatedDescription;
             return product.save().then((result) => {
                 res.redirect("/admin/products");

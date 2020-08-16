@@ -209,3 +209,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Multer is a middleware that we add on to express, it constantly monitors requests which contains multipart form data and then extracts the files from them.
 -   For accesing the files and images sent via the request, we use the parameter - `req.file`.
 -   We set the `destination` parameter in the multer configuration to save and convert the buffer of data sent to us via the request into a single file.
+-   This is the first time I had an experience with uploading the files and seving them to the user. Big revealation in this module was the fact that the file is never stored in the database (too inefficient) but instead on the file system itself. What we do store in the database is the path to the file in the file system.
