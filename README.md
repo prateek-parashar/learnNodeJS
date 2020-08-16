@@ -201,4 +201,11 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   The express error handling middleware works differently for sync and async code. To reach the express error handler from sync code, we can simple throw the error like `throw new Error()` but for async code, we have to pass the error inside the `next` function.
 -   One problem I encounterd while working on this was the triggering of infinite loop on the error checking mechanism for the user sesssion. It was triggered cause the middleware where I assign the user to the session executes every time a request is sent, and since I was redirecting the request in my error handling middleware, I ended up causing an infinite back and forth between the 2 middleware function. Should avoid that.
 -   For every redirection / error or more generally every freaking response, we should adhere to the standart status codes. Exhaustive list here -> https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
--   
+
+### File uploads and downloads
+
+-   Files cannot be handled with simple `urlencoding`, that works only for text. We set the following enctype `enctype="multipart/form-data"` in the form to inform the server the the form will contain different types of data and not just text.
+-   Express uses the package `multer` to parse the form data other than the text (we use `app.use(express.urlencoded({ extended: true }));` to handle that).
+-   Multer is a middleware that we add on to express, it constantly monitors requests which contains multipart form data and then extracts the files from them.
+-   For accesing the files and images sent via the request, we use the parameter - `req.file`.
+-   We set the `destination` parameter in the multer configuration to save and convert the buffer of data sent to us via the request into a single file.

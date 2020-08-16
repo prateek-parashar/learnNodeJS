@@ -6,26 +6,44 @@
     <%- include("../includes/navigation.ejs") %>
 
     <main>
-        <form class="product-form" action="/admin/<%= (editing) ? 'edit-product' : 'add-product' %> " method="POST">
+        <form
+            class="product-form"
+            action="/admin/<%= (editing) ? 'edit-product' : 'add-product' %> "
+            method="POST"
+            enctype="multipart/form-data"
+        >
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
             <div class="form-control">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" value="<%= (editing) ? product.title : '' %>" />
             </div>
 
-            <div class="form-control">
+            <!-- <div class="form-control">
                 <label for="imageURL">Image URL</label>
                 <input type="text" name="imageURL" id="imageURL" value="<%= (editing) ? product.imageURL : '' %>" />
+            </div> -->
+
+            <div class="form-control">
+                <label for="image">Image</label>
+                <input type="file" name="image" id="image" />
             </div>
 
             <div class="form-control">
                 <label for="price">Price</label>
-                <input type="number" name="price" id="price" step="0.01" value="<%= (editing) ? product.price : '' %>" />
+                <input
+                    type="number"
+                    name="price"
+                    id="price"
+                    step="0.01"
+                    value="<%= (editing) ? product.price : '' %>"
+                />
             </div>
 
             <div class="form-control">
                 <label for="description">Product Description</label>
-                <textarea name="description" id="description" rows="5"><%= (editing) ? product.description : '' %></textarea>
+                <textarea name="description" id="description" rows="5">
+<%= (editing) ? product.description : '' %></textarea
+                >
             </div>
             <% if(editing) { %>
             <input type="hidden" name="id" value="<%= product._id %>" />

@@ -4,6 +4,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
 const flash = require("connect-flash");
+const multer = require("multer");
 
 const app = express();
 
@@ -36,6 +37,9 @@ app.set("view engine", "ejs");
 
 // This is a middleware that allows us to parse the data sent to the server via forms
 app.use(express.urlencoded({ extended: true }));
+
+// This is a middleware that allows us to parse the multipart data (images) sent to the server via forms
+app.use(multer({ dest: "images" }).single("image"));
 
 // This is a middleware that allows us to send static files in response (html files)
 app.use(express.static(path.join(rootDir, "public")));
