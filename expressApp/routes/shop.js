@@ -29,5 +29,7 @@ router.post("/create-order", authCheck, shopController.addOrder);
 
 router.get("/checkout", authCheck, shopController.getCheckout);
 
+router.get("/orders/:orderID", authCheck, shopController.getInvoice);
+
 // Here, we are basically exporting an object whose keys will be the keys we set here for the exports object.
 module.exports = router;
