@@ -30,6 +30,14 @@ const fileStorageConfig = multer.diskStorage({
     },
 });
 
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === "image/png" || file.mimetype === "image/jpeg" || file.mimetype === "inage/jpg") {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+};
+
 const csrfProtection = csrf();
 
 // Importing the routes from the files
@@ -49,7 +57,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 // This is a middleware that allows us to parse the multipart data (images) sent to the server via forms
-app.use(multer({ storage: fileStorageConfig }).single("image"));
+app.use(multer({ storage: fileStorageConfig, fileFilter: fileFilter }).single("image"));
 
 // This is a middleware that allows us to send static files in response (html files)
 app.use(express.static(path.join(rootDir, "public")));
