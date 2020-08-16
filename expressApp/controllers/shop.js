@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const PDFDocument = require("pdfkit");
 
 const Product = require("../models/product");
 const Order = require("../models/order");
@@ -143,22 +144,46 @@ exports.getCheckout = (req, res, next) => {
 
 exports.getInvoice = (req, res, next) => {
     const orderID = req.params.orderID;
-    // const invoiceName = "invoice-" + orderID + ".pdf";
-    const invoiceName = "test.jpg";
 
-    const invoicePath = path.join("data", "invoices", invoiceName);
+    Order.findById(orderID)
+        .then((order) => {
+            if (!order) {
+                return next(new Error("No order found!"));
+            }
 
-    // fs.readFile(invoicePath, (err, data) => {
-    //     if (err) {
-    //         return next(err);
-    //     }
-    //     res.setHeader("Content-Type", "application/jpg");
-    //     res.setHeader("Content-Disposition", "inline; filename=" + invoiceName + "");
-    //     res.send(data);
-    // });
+            if (order.user.userID.toString() !== req.user._id.toString()) {
+                return next(new Error("Unauthorized"));
+            }
+            const invoiceName = "invoice-" + orderID + ".pdf";
+            const invoicePath = path.join("data", "invoices", invoiceName);
 
-    const file = fs.createReadStream(invoicePath);
-    res.setHeader("Content-Type", "application/jpg");
-    res.setHeader("Content-Disposition", "inline; filename=" + invoiceName + "");
-    file.pipe(res);
+            const pdfDocument = new PDFDocument();
+
+            pdfDocument.pipe(fs.createWriteStream(invoicePath));
+
+            res.setHeader("Content-Type", "application/pdf");
+            res.setHeader("Content-Disposition", "inline; filename=" + invoiceName + "");
+
+            pdfDocument.pipe(res);
+
+            pdfDocument.fontSize(26).text("Invoice", {
+                underline: true,
+            });
+            pdfDocument.text("-----------------------");
+            let totalPrice = 0;
+            order.products.forEach((prod) => {
+                totalPrice += prod.quantity * prod.product.price;
+                pdfDocument
+                    .fontSize(14)
+                    .text(prod.product.title + " - " + prod.quantity + " x " + "$" + prod.product.price);
+            });
+            pdfDocument.text("---");
+            pdfDocument.fontSize(20).text("Total Price: $" + totalPrice);
+
+            pdfDocument.end();
+        })
+        .catch((err) => {
+            console.log(err);
+            return next(new Error(err));
+        });
 };
