@@ -20,6 +20,16 @@ const store = new MongoDBStore({
     collection: "session",
 });
 
+// This object contains configurations which mutler uses to store the uploaded image
+const fileStorageConfig = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images");
+    },
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString().slice(0, 10) + "-" + file.originalname);
+    },
+});
+
 const csrfProtection = csrf();
 
 // Importing the routes from the files
@@ -39,7 +49,7 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 
 // This is a middleware that allows us to parse the multipart data (images) sent to the server via forms
-app.use(multer({ dest: "images" }).single("image"));
+app.use(multer({ storage: fileStorageConfig }).single("image"));
 
 // This is a middleware that allows us to send static files in response (html files)
 app.use(express.static(path.join(rootDir, "public")));

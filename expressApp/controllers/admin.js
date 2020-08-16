@@ -16,9 +16,6 @@ exports.postProduct = (req, res, next) => {
     const image = req.file;
     const description = req.body.description;
 
-    console.log("sijfaoifjadsifjdsi");
-    console.log(image);
-
     const product = new Product({
         title: title,
         price: price,
