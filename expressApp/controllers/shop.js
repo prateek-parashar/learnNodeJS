@@ -152,7 +152,8 @@ exports.getInvoice = (req, res, next) => {
         if (err) {
             return next(err);
         }
-
+        res.setHeader("Content-Type", "application/jpg");
+        res.setHeader("Content-Disposition", "inline; filename=" + invoiceName + "");
         res.send(data);
     });
 };
