@@ -60,7 +60,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(multer({ storage: fileStorageConfig, fileFilter: fileFilter }).single("image"));
 
 // This is a middleware that allows us to send static files in response (html files)
+// Express takes this entire folder and manages it behind the scenes to serve the pages as we request them.
 app.use(express.static(path.join(rootDir, "public")));
+
+app.use("/images", express.static(path.join(rootDir, "images")));
 
 // Initializing the session middleware
 app.use(session({ secret: "test secret", resave: false, saveUninitialized: false, store: store }));
