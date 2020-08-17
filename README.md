@@ -215,3 +215,8 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Downloads can be allowed in 2 different ways, one where node loads all of them in memory and then serves them, which is very inefficient. The efficient way is by creating a write stream because the response object in express (or even node) is a writable stream.
 -   Authentication and authorization for the users should be taken care of at each and every step! Never allow one user to access links / urls which are meant for another user. Keep checking and verifying the user and the data that you are sending again and again. This feels tedious. Have to look at places to find if there are way sto manage it in a better manner.
 -   We use the package `pdfkit` to generate pdfs on the fly. We can customize and format the pdf. Refer the documentation to read more.
+
+### Pagination
+
+-   Pagination is simply achieved by the `limit` and `skip` functionality of the databases. Then the headache is about creating the buttons and the user navigation for the first, last, next and previous pages.
+-   Note to self, NEVER TURN ON THE ERROR HANDLING ROUTES ON EXPRESS JS WHILE DEVELOPING. While they may be really appropriate for the end user as you don't want them to see the error messages, it is vital that I get the error message while developing myself right in the freaking browser.

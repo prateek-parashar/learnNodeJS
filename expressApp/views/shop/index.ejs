@@ -30,8 +30,19 @@
         </div>
 
         <section class="pagination">
+            <% if (hasPreviousPage) { %>
+            <a href="/?page=<%= previousPage %>">Previous</a>
+            <% } %> <% if (currentPage !== 1) { %>
             <a href="/?page=1">1</a>
-            <a href="/?page=2">2</a>
+            <% } %>
+
+            <a href="/?page=<%= currentPage %>">Current Page</a>
+
+            <% if (hasNextPage) { %>
+            <a href="/?page=<%= nextPage %>">Next</a>
+            <% } %> <% if (currentPage !== lastPage) { %>
+            <a href="/?page=lastPage">Last</a>
+            <% } %>
         </section>
 
         <% } else { %>
