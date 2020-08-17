@@ -6,6 +6,8 @@ const Product = require("../models/product");
 const Order = require("../models/order");
 const rootDir = require("../util/path");
 
+const MAX_PRODUCTS_PER_PAGE = 2;
+
 exports.getProduct = (req, res, next) => {
     const id = req.params.productID;
     Product.findById(id)
@@ -36,7 +38,10 @@ exports.getProductList = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
+    const page = req.query.page;
     Product.find()
+        .skip((page - 1) * MAX_PRODUCTS_PER_PAGE)
+        .limit(MAX_PRODUCTS_PER_PAGE)
         .then((productList) => {
             res.render("shop/index", {
                 pageTitle: "Home",
