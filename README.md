@@ -220,3 +220,4 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 
 -   Pagination is simply achieved by the `limit` and `skip` functionality of the databases. Then the headache is about creating the buttons and the user navigation for the first, last, next and previous pages.
 -   Note to self, NEVER TURN ON THE ERROR HANDLING ROUTES ON EXPRESS JS WHILE DEVELOPING. While they may be really appropriate for the end user as you don't want them to see the error messages, it is vital that I get the error message while developing myself right in the freaking browser.
+-   Pagination is an important concept and should be used wherever possible. You don't want to pull and fetch the entire freaking database into memory.
