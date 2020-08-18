@@ -223,6 +223,9 @@ Notice the extra pais of parenthesis at the end of the import statement. I had n
 -   Pagination is an important concept and should be used wherever possible. You don't want to pull and fetch the entire freaking database into memory.
 
 ### Asynchronous Javascript request
--    In a typical interaction between the server and the frontend, the server mainly replies with either a `redirect` or serving an `html` page. 
--   Getting routed to another url or loading an entire page is slow. We use asynchronous requests to load data in the same page and avoid slower redirects. 
+
+-   In a typical interaction between the server and the frontend, the server mainly replies with either a `redirect` or serving an `html` page.
+-   Getting routed to another url or loading an entire page is slow. We use asynchronous requests to load data in the same page and avoid slower redirects.
 -   In an asynchronous request, the client sends a request in `JSON` format and the server too replies in the `JSON` format to the client.
+-   Of course, this looks so so soooo much better than redirecting the user and I can see the popularity of the SPAs and the respective frameworks that have been created with this idea in mind.
+-   One thing to keep in mind here, the `fetch` api that was used here is important and also, I gotta learn more about the javascript selectors. I just can't do shit without jQuery.
