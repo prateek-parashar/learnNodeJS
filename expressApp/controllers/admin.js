@@ -98,7 +98,7 @@ exports.editProduct = (req, res, next) => {
 };
 
 exports.deleteProduct = (req, res, next) => {
-    const id = req.body.id;
+    const id = req.params.productID;
     Product.findById(id)
         .then((product) => {
             if (!product) {
@@ -107,10 +107,10 @@ exports.deleteProduct = (req, res, next) => {
             fileHelper.deleteFile(product.imageURL);
             return Product.deleteOne({ _id: id, userId: req.session.user._id });
         })
-        .then((result) => {
-            res.redirect("/admin/products");
+        .then(() => {
+            res.status(200).json({ message: "success" });
         })
         .catch((err) => {
-            return next(new Error(err));
+            res.status(500).json({ message: "failed" });
         });
 };
