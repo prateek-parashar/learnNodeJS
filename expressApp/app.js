@@ -12,9 +12,6 @@ const path = require("path");
 
 const User = require("./models/user");
 
-const MONGODB_URI =
-    "mongodb+srv://prateek:i06ph4rYHQNkTIAf@cluster0.kybvw.mongodb.net/shop?retryWrites=true&w=majority";
-
 const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: "session",
